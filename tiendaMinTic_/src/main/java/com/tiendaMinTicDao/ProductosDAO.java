@@ -1,4 +1,4 @@
-package com.TiendaWebDAO;
+package package com.tiendaMinTicDao;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
