@@ -1,4 +1,4 @@
-package com.tiendaDto;
+package com.tiendaMinTicDto;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
