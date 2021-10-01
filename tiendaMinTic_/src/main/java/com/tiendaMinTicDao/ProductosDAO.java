@@ -1,4 +1,4 @@
-package package com.tiendaMinTicDao;
+package com.tiendaMinTicDao;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,11 +12,11 @@ public class ProductosDAO {
 public ArrayList<ProductosVO> listarProductos(){
 		
 		ArrayList<ProductosVO> listaProductos =new ArrayList<>();
-		ConexionDB conex = new ConexionDB();
+		Conexion conex = new Conexion();
 		
 		try {
 			String query="Select codigo_producto,ivacompra,nitproveedor, nombre_producto, precio_compra, precio_venta from productos;";
-			PreparedStatement consulta =conex.getConexion().prepareStatement(query);
+			PreparedStatement consulta =conex.getConnection().prepareStatement(query);
 			ResultSet res=consulta.executeQuery();
 			
 			
@@ -44,7 +44,7 @@ public ArrayList<ProductosVO> listarProductos(){
 	 public ArrayList<ProductosVO>  buscarProducto(Long Id) {
 	        ArrayList<ProductosVO> listaProductos = new ArrayList<>();
 	        
-	        ConexionDB conex = new ConexionDB();
+	        Conexion conex = new Conexion();
 	        
 	          if (conex != null) {
 	                String cadena = "";
@@ -52,7 +52,7 @@ public ArrayList<ProductosVO> listarProductos(){
 	                
 	                try {
 	                	 cadena ="Select codigo_producto,ivacompra,nitproveedor, nombre_producto, precio_compra, precio_venta from productos where codigo_producto = ?;";
-	                        PreparedStatement consulta = conex.getConexion().prepareStatement(cadena);
+	                        PreparedStatement consulta = conex.getConnection().prepareStatement(cadena);
 	                        consulta.setLong(1, Id);            
 	  
 	                         ResultSet res = consulta.executeQuery();
@@ -90,7 +90,7 @@ public ArrayList<ProductosVO> listarProductos(){
 	   public boolean registrarProducto(ProductosVO prod) {
 	        
 		boolean estatus = false;
-		ConexionDB conex=new ConexionDB();
+		Conexion conex=new Conexion();
 		 if (conex != null && prod != null) { 
 			 try {
 				 String cadena = "INSERT INTO productos (`codigo_producto`, `ivacompra`, "
@@ -102,7 +102,7 @@ public ArrayList<ProductosVO> listarProductos(){
 						  +"'"+prod.getPrecioVenta()+"'"
 						  +")";
 
-			PreparedStatement consulta = conex.getConexion().prepareStatement(cadena);
+			PreparedStatement consulta = conex.getConnection().prepareStatement(cadena);
 						 
 				  if (this.buscarProducto(prod.getCodigoProducto()) == null) {  // si el producto no esxiste registra producto
 						consulta.executeUpdate(cadena);
@@ -125,11 +125,11 @@ public ArrayList<ProductosVO> listarProductos(){
 
 	 public boolean modificarProducto(ProductosVO prod) {
 		boolean estatus=false;
-		ConexionDB conex=new ConexionDB();
+		Conexion conex=new Conexion();
 		try{
 			String cadena ="UPDATE producto SET ivacompra = ?,nitproveedor = ?, nombre_producto = ?, precio_compra = ?,"
 					+ "precio_venta = ? WHERE codigo_producto = ? ";
-			PreparedStatement consulta = conex.getConexion().prepareStatement(cadena);
+			PreparedStatement consulta = conex.getConnection().prepareStatement(cadena);
 			
 			consulta.setDouble(1, prod.getIvaCompra());
 			consulta.setLong(2, prod.getNitProveedor()); 
@@ -159,12 +159,12 @@ public ArrayList<ProductosVO> listarProductos(){
 	 * @return boolean true: si existe producto, flase si no exite
 	 */
 	public boolean eliminarProducto(Long Id) {
-		ConexionDB conex=new ConexionDB();
+		Conexion conex=new Conexion();
 		 boolean estatus=false;
 		 
 		try {
 			String cadena = "DELETE FROM productos WHERE codigo_producto ='"+Id+"'";
-			PreparedStatement consulta = conex.getConexion().prepareStatement(cadena);
+			PreparedStatement consulta = conex.getConnection().prepareStatement(cadena);
 			if(consulta.executeUpdate(cadena) == 1){
 				estatus=true;
 			}
