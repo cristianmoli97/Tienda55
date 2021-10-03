@@ -100,6 +100,15 @@ public class ProductosVO {
 		this.precioVenta = precio_venta;
 	}
 	
+	public void setDefault() {
+		this.codigoProducto = 0;
+		this.ivaCompra = 0;
+		this.nitProveedor=0;
+		this.nombreProducto="";
+		this.precioCompra=0;
+		this.precioVenta=0;
+		
+	}
 	
 	
 
