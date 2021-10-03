@@ -123,7 +123,7 @@ public ArrayList<ProductosVO> listarProductos(){
 	 }
 
 
-	 public boolean modificarProducto(ProductosVO prod) {
+	 public boolean actualizarProducto(ProductosVO prod) {
 		boolean estatus=false;
 		Conexion conex=new Conexion();
 		try{
