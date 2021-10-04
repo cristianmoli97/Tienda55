@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.tiendaMinTic.CSV.Servicios.ServicioAutenticar;
 import com.tiendaMinTicDao.ProductosDAO;
-import com.tiendaMinTicDao.UsuarioDAO; //alison agrega estos objetos
 import com.tiendaMinTicDto.ProductosVO;
-import com.tiendaMinTicDto.UsuarioVO; //alison agrega estos objetos
+import com.tiendaMinTicDto.UsuariosVO; 
 
 @Controller
 public class TiendaController {
@@ -33,14 +33,14 @@ public class TiendaController {
 	@PostMapping(value="/loginform")
     public ModelAndView AcessoUsuario(@RequestParam("username") String username, @RequestParam("password") String password){
         
-    	UsuarioDAO usudao=new UsuarioDAO();
-		UsuarioVO usuVO = new UsuarioVO();
+    	ServicioAutenticar serAutenticar = new ServicioAutenticar();
+		UsuariosVO usuVO = new UsuariosVO();
 		usuVO.setNombreUsuario(username);
-		usuVO.setClave(password);
+		usuVO.setPasswordUsuario(password);
 		
 
         ModelAndView mav = new ModelAndView();
-        if (!usudao.autenticar(usuVO)) {
+        if (!serAutenticar.autenticar(usuVO)) {
             mav.setViewName("redirect:login");
         }else {
         	mav.setViewName("redirect:prodcrud");
