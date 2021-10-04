@@ -81,7 +81,7 @@ public class UsuariosDao {
 		ConexionDB conex=new ConexionDB();
 		if (conex != null && user != null) { 
 		try {
-			String cadena = ""insert into usuarios (Cedula,Usuario,Contraseña,Nombre,Correo)" + "values ("+user.getCedula()+",'"+user.getPasswordUsuario()+"','"+user.getUsuario()+"','"+user.getCorreoUsuario()+"','"+user.getNombreUsuario()+"');";
+			String cadena = "insert into usuarios (Cedula,Usuario,Contraseña,Nombre,Correo)" + "values ("+user.getCedula()+",'"+user.getPasswordUsuario()+"','"+user.getUsuario()+"','"+user.getCorreoUsuario()+"','"+user.getNombreUsuario()+"');";
 		PreparedStatement consulta = conex.getConexion().prepareStatement(query);
 			if (this.+consultarUsuario(user.getCedula()) == null) {  // si el usuario no esxiste registra usuario
 						consulta.executeUpdate(query);
