@@ -14,8 +14,8 @@ import org.apache.commons.csv.CSVRecord;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.tiendaMinTic.DAO.ProductosDAO;
-import com.tiendaMinTic.DTO.ProductosVO;
+import com.tiendaMinTicDao.ProductosDAO;
+import com.tiendaMinTicDto.ProductosVO;
 
 
 @Service
