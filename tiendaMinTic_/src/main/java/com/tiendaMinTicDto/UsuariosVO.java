@@ -1,4 +1,4 @@
-package com.TiendawebDto;
+package com.tiendaMinTicDto;
 
 public class UsuariosVO {
 	private int Cedula;
