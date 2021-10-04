@@ -38,9 +38,9 @@ public class TiendaController {
 		usuVO.setNombreUsuario(username);
 		usuVO.setClave(password);
 		
-    	boolean isValidUser = usudao.autenticar(usuVO);
+
         ModelAndView mav = new ModelAndView();
-        if (!isValidUser) {
+        if (!usudao.autenticar(usuVO)) {
             mav.setViewName("redirect:login");
         }else {
         	mav.setViewName("redirect:prodcrud");
