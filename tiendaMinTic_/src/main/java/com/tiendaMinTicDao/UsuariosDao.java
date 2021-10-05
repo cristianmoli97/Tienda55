@@ -10,7 +10,7 @@ public class UsuariosDao {
 		ArrayList<UsuariosVO> listaUsuarios= new ArrayList<>() ;
 		Conexion conex=new Conexion();
 		try {
-			String query="Select cedula_usuario,email_usuario,nombre_usuario,password_usuario,usuario from usuarios";
+			String query="Select cedula_usuario,email_usuario,nombre_usuario,password,usuario from usuarios";
 			PreparedStatement consulta=conex.getConnection().prepareStatement(query);
 			ResultSet res=consulta.executeQuery();
 			
@@ -18,7 +18,7 @@ public class UsuariosDao {
 				UsuariosVO usuario=new UsuariosVO();
 				usuario.setCedula(res.getInt("cedula_usuario"));
 				usuario.setUsuario (res.getString("usuario"));
-				usuario.setPasswordUsuario(res.getString("password_usuario"));
+				usuario.setPasswordUsuario(res.getString("password"));
 				usuario.setNombreUsuario(res.getString("nombre_usuario"));
 				usuario.setCorreoUsuario(res.getString("email_usuario"));
 				listaUsuarios.add(usuario);
@@ -40,7 +40,7 @@ public class UsuariosDao {
 	                String query = "";
 	                boolean estatus=false;
 		try {
-			query="Select cedula_usuario,email_usuario,nombre_usuario,password_usuario,usuario from usuarios where cedula_usuario=?";
+			query="Select cedula_usuario,email_usuario,nombre_usuario,password,usuario from usuarios where cedula_usuario=?";
 			PreparedStatement consulta=conex.getConnection().prepareStatement(query);
 			consulta.setInt(1,id);
 			ResultSet res=consulta.executeQuery();
@@ -50,7 +50,7 @@ public class UsuariosDao {
 				UsuariosVO usuario=new UsuariosVO();
 				usuario.setCedula(res.getInt("cedula_usuario"));
 				usuario.setUsuario (res.getString("usuario"));
-				usuario.setPasswordUsuario(res.getString("password_usuario"));
+				usuario.setPasswordUsuario(res.getString("password"));
 				usuario.setNombreUsuario(res.getString("nombre_usuario"));
 				usuario.setCorreoUsuario(res.getString("email_usuario"));
 				listaUsuarios.add(usuario);
