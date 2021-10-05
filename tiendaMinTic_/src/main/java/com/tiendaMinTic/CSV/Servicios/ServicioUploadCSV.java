@@ -43,12 +43,16 @@ public class ServicioUploadCSV {
       //cargo a DB
       for(ProductosVO prodVo: listaproductos) {
     	  productosDAO.registrarProducto(prodVo);
+    	  
       }
+      
+
       
     } catch (IOException e) {
       throw new RuntimeException("falla carga csv: " + e.getMessage());
     }
   }
+  
 
   public List<ProductosVO> getAllProducts() {
     return productosDAO.listarProductos();
@@ -57,13 +61,16 @@ public class ServicioUploadCSV {
   
 
   public static List<ProductosVO> csvToProductos(InputStream is) {
+	  List<ProductosVO> listaProductos = new ArrayList<ProductosVO>();
+	  
+	  
     try (BufferedReader fileReader = new BufferedReader(new InputStreamReader(is, "UTF-8")); 
     		
 		CSVParser csvParser = new CSVParser(fileReader,CSVFormat.RFC4180.withFirstRecordAsHeader());
     		) {
     	
 
-      List<ProductosVO> listaProductos = new ArrayList<ProductosVO>();
+     
 
       Iterable<CSVRecord> csvRecords = csvParser.getRecords();
     
