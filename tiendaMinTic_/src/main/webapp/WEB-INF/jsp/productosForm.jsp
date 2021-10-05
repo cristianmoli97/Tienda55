@@ -1,13 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
     <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
 <title>productorForm</title>
-<link href="<c:url value="/static/css/style_usu.css"/>" rel="stylesheet" type="text/css">    
+<link href="/static/css/style_usu.css" rel="stylesheet" type="text/css">    
 
 
 </head>
@@ -17,14 +16,14 @@
 		<li><a href="#">Usuarios</a>
 		<li><a href="#">Clientes</a></li>
 		<li><a href="#">Proveedores</a></li>
-		<li><a href="<c:url value="producto"/>">Productos</a>
+		<li><a href="producto">Productos</a>
 			<ul>
-      			<li><a href="<c:url value="prodcrud"/>">CRUD</a></li>
+      			<li><a href="prodcrud">CRUD</a></li>
       		</ul>
       	</li>
 		<li><a href="#">Ventas</a></li>
 		<li><a href="#">Reportes</a></li>
-		<li><a href="<c:url value="/login"/>">logout</a></li>
+		<li><a href="/login">logout</a></li>
 		
 	</ul>
 </nav>
@@ -58,7 +57,7 @@
     <div class="content">
         <div class="content-text">${popupMsj}. 
         
-        <div class="content-buttons"> <a href="<c:url value="prodcrud"/>" id="close-button2">Aceptar</a></div>
+        <div class="content-buttons"> <a href="prodcrud" id="close-button2">Aceptar</a></div>
     	</div>
 	</div>
 </div>

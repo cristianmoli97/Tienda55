@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
 <title>Tienda-productos</title>
-<link href="<c:url value="/static/css/style_usu.css"/>" rel="stylesheet" type="text/css">   
+<link href="/static/css/style_usu.css" rel="stylesheet" type="text/css">   
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="/static/js/productos.js"> </script>
 
@@ -17,14 +17,14 @@
 		<li><a href="#">Usuarios</a>
 		<li><a href="#">Clientes</a></li>
 		<li><a href="#">Proveedores</a></li>
-		<li><a href="<c:url value="producto"/>">Productos</a>
+		<li><a href="producto">Productos</a>
 			<ul>
-      			<li><a href="<c:url value="prodcrud"/>">CRUD</a></li>
+      			<li><a href="prodcrud">CRUD</a></li>
       		</ul>
       	</li>
 		<li><a href="#">Ventas</a></li>
 		<li><a href="#">Reportes</a></li>
-		<li><a href="<c:url value="/login"/>">logout</a></li>
+		<li><a href="/login">logout</a></li>
 		
 	</ul>
 </nav>
