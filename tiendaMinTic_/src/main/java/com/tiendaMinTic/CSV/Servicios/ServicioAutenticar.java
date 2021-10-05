@@ -12,23 +12,26 @@ public class ServicioAutenticar {
 	
        public boolean autenticar(UsuariosVO usu) {
                boolean estatus = false;
+              
                Conexion conec = new Conexion();
                Connection conectar =conec.getConnection();
                PreparedStatement consulta = null;
                ResultSet res = null;
-               
+              
                
                try {
-                   String cadena = "SELECT * FROM usuarios where nombre_usuario = ? and password = ?";
+                   String cadena = "SELECT * FROM usuarios where usuario = ? and password = ?";
                    consulta = conectar.prepareStatement(cadena);
-                   consulta.setString(1, usu.getNombreUsuario());
+                   consulta.setString(1, usu.getUsuario());
                    consulta.setString(2, usu.getPasswordUsuario());
-    
+     
                    res = consulta.executeQuery();
-               
+
                    if(res.next()) {
+                	   System.out.println(res.getString("nombre_usuario"));
                        estatus = true;
                    }
+   
      
                } catch (SQLException e) {
                    System.out.println(e);
@@ -42,7 +45,7 @@ public class ServicioAutenticar {
                    }
                }
                conec.desconectar();
-                   return estatus;
+               return estatus;
                }
     
 }
