@@ -18,13 +18,13 @@ import com.tiendaMinTicDto.UsuariosVO;
 public class TiendaController {
 	
 	@GetMapping(value="/")
-    public ModelAndView defaultPage(){
+    public ModelAndView paginadefault(){
 		ModelAndView mav = new ModelAndView("login0");
 		return mav;
     }
 	
 	@GetMapping(value="/login")
-    public ModelAndView showLoginPage(){
+    public ModelAndView PaginaLogin(){
 		ModelAndView mav = new ModelAndView("login0");
 		return mav;
     }
@@ -33,14 +33,14 @@ public class TiendaController {
 	@PostMapping(value="/loginform")
     public ModelAndView AcessoUsuario(@RequestParam("username") String username, @RequestParam("password") String password){
         
-    	ServicioAutenticar serAutenticar = new ServicioAutenticar();
+    	ServicioAutenticar userAutenticar = new ServicioAutenticar();
 		UsuariosVO usuVO = new UsuariosVO();
-		usuVO.setNombreUsuario(username);
+		usuVO.setUsuario(username);
 		usuVO.setPasswordUsuario(password);
 		
 
         ModelAndView mav = new ModelAndView();
-        if (!serAutenticar.autenticar(usuVO)) {
+        if (!userAutenticar.autenticar(usuVO)) {
             mav.setViewName("redirect:login");
         }else {
         	mav.setViewName("redirect:prodcrud");
