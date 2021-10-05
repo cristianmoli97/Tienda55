@@ -1,11 +1,28 @@
 package com.tiendaMinTicDto;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class UsuariosVO {
+	@Id
+	@Column(name = "cedula_usuario")
 	private int Cedula;
+	
+	@Column(name = "usuario")
 	private String usuario;
+	
+	@Column(name = "password")
 	private String passwordUsuario;
+	
+	@Column(name = "nombre_usuario")
 	private String nombreUsuario;
+	
+	@Column(name = "correo_usuario")
 	private String correoUsuario;
+	
+	
 	public int getCedula() {
 		return Cedula;
 	}
