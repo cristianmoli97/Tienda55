@@ -4,10 +4,10 @@ import java.sql.*;
 import javax.swing.JOptionPane;
 public class Conexion {
 	
-	static String bd="tiendaweb";
+	static String bd="tiendaGenerica";
 	static String login="root";
-	static String password="molinares97";
-	static String  url="jdbc:mysql://localhost:3307/"+bd;
+	static String password="";
+	static String  url="jdbc:mysql://localhost/"+bd; 
 	
 
 	
