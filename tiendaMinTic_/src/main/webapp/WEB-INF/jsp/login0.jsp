@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +9,8 @@
 <title>Login</title>
  
 <!-- CSS -->
-<link href="<c:url value="/static/css/styles.css"/>" rel="stylesheet" type="text/css">
+<link rel="stylesheet"  href="/static/css/styles.css" type="text/css">
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="/static/js/main.js"> </script>
 </head>
