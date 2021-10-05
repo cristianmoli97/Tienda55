@@ -1,4 +1,5 @@
 $(document).ready(function(){
+	'use strict';
 $(".upload_btn").click(function(event){
      $(".upload_file").click();
      event.preventDefault();
@@ -10,7 +11,7 @@ document.getElementById("IdSelArchivo").onchange = function(e) {
     x.setAttribute("placeholder", this.value);
 }
 
-'use strict';
+
 
 var FormProdu = document.querySelector('#FormProdu');
 var IdSelArchivo = document.querySelector('#IdSelArchivo');
@@ -23,7 +24,7 @@ function uploadSingleFile(file) {
     formData.append("file", file);
 
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "/jsp/productos.jsp/UploadProductos");
+    xhr.open("POST", "UploadProductos");
 
     xhr.onload = function() {
         console.log(xhr.responseText);
