@@ -8,7 +8,7 @@ import com.tiendaMinTicDto.ProveedoresVO;
 
 
 
-public class ProveedoresDao {
+public class ProveedoresDAO {
 	//lo que sea
 	public ArrayList<ProveedoresVO> listarProveedores(){			
 			ArrayList<ProveedoresVO> listaProveedores =new ArrayList<>();			
@@ -39,7 +39,7 @@ public class ProveedoresDao {
 		ArrayList<ProveedoresVO> listaProveedores = new ArrayList<>();
 		Conexion conex = new Conexion();
 		try {
-			String query ="SELECT nitproveedores,ciudad_proveedor,direccion_proveedor,nombre_proveedor,telefono_proveedor FROM proveedores WHERE nitproveedor = ?";
+			String query ="SELECT nitproveedores,ciudad_proveedor,direccion_proveedor,nombre_proveedor,telefono_proveedor FROM proveedores WHERE nitproveedores = ?";
 			PreparedStatement consulta = conex.getConnection().prepareStatement(query);
 			consulta.setLong(1, nitProveedor);
 			ResultSet res = consulta.executeQuery();
@@ -52,6 +52,8 @@ public class ProveedoresDao {
 				proveedor.setTelefonoProveedor(res.getString("telefono_proveedor"));
 				listaProveedores.add(proveedor);
 			}
+			else
+				listaProveedores=null;
 			res.close();
 			consulta.close();
 			conex.desconectar();
@@ -80,7 +82,7 @@ public class ProveedoresDao {
 		}		
 	}
 	
-	public boolean modificarProveedor (ProveedoresVO proveedor) {
+	public boolean actualizarProveedor (ProveedoresVO proveedor) {
 		Conexion conex = new Conexion();
 		try {
 			String query = "UPDATE proveedores SET ciudad_proveedor = ?, direccion_proveedor = ?, nombre_proveedor = ?, telefono_proveedor = ? WHERE nitproveedores = ?";

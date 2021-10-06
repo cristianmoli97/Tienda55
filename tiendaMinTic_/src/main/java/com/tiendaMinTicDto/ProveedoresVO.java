@@ -37,6 +37,14 @@ public class ProveedoresVO {
 		this.telefonoProveedor = telefonoProveedor;
 	}
 	
+	public void setDefault() {
+		this.nitProveedor = 0;
+		this.ciudadProveedor = "";
+		this.direccionProveedor = "";
+		this.nombreProveedor = "";
+		this.telefonoProveedor = "";
+		
+	}
 	
 	
 
