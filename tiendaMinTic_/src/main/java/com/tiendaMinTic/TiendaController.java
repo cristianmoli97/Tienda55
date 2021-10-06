@@ -237,7 +237,97 @@ public class TiendaController {
 					  
 
 	  }	  
+    // CRUD Usuarios
+    @GetMapping(value = {"/usuarioscrud"})  
+    public String updateContact(Model model) {
+    	UsuariosVO usuario = new UsuariosVO();
+        model.addAttribute("usuario",usuario);
+        model.addAttribute("popupActive", "hidden");
+        model.addAttribute("popupMsj", "");
+        return "usuariosForm";
+ }
+    
+      //Al hacer click sobre alguno de los botones
+	  @PostMapping("/registrarusuarioform")
+	  public String registrarusuario( @Validated UsuariosVO usuario, @RequestParam("evento_boton_crud_producto") String botonCrudUsuario , Model model) {
+         
+		  UsuariosVO userDao=new UsuariosVO();
+		  
+		  String redireccion = "usuariosForm";
+		  
+		  switch(botonCrudUsuario) {
+			  case "Consultar":
+				  if(userDao.consultarUsuario (usuario.getCedula_usuario()) != null) {
+					  
+					  model.addAttribute("popupMsj", "Usuario en base de datos");
+					  
+				  }else {
+					  model.addAttribute("popupMsj", "Usuario inexistente");
+				  }
+				  usuario.setDefault(); // pone a cero los datos del usuario
+				  model.addAttribute("usuario",usuario);
+			
+				  model.addAttribute("popupActive", "visible");
+	
+				  
+
+				  break;
+			  case "Crear":
+				  if(userDao.registrarPersona(usuario)) {
+					  
+					  model.addAttribute("popupMsj", "Usuario guardado en base de datos");
+					  
+				  }else {
+					  model.addAttribute("popupMsj", "Usuario ya registrado o no creado intente nuevamente");
+				  }
+				  usuario.setDefault(); // pone a cero los datos del usuario
+				  model.addAttribute("usuario", usuario);
+			
+				  model.addAttribute("popupActive", "visible");
+				  
+				  
+				  break;
+				  
+			  case "Actualizar":
+				  
+			  	  if(userDao.modificarUsuarios(usuario)) {
+			  		  model.addAttribute("popupMsj", "Usuario actualizado en base de datos");
+					  
+				  }else {
+					  model.addAttribute("popupMsj", "Usuario no actualizado o inexistente intente nuevamente");
+				  }
+				  usuario.setDefault(); // pone a cero los datos del usuario
+				  model.addAttribute("usuario",usuario);
+			
+				  model.addAttribute("popupActive", "visible");
+				  
+				  break;
+				  
+			  case "Borrar":
+				  
+			  	  if(userDao.eliminarUsuario(usuario.getCedula_usuario())) {
+			  		  model.addAttribute("popupMsj", "Usuario eliminado de enbase de datos");
+					  
+				  }else {
+					  model.addAttribute("popupMsj", "Usuario no eliminado o inexistente");
+				  }
+				  usuario.setDefault(); // pone a cero los datos del usuario
+				  model.addAttribute("usuario",usuario);
+			
+				  model.addAttribute("popupActive", "visible");
+			  				  
+			default:
+				break;
+				
+		  }
+		  
+		  return redireccion;
+					  
+
+	  }
     
 	
 
 }
+
+
