@@ -9,84 +9,142 @@ import com.tiendaMinTicDto.*;
 
 public class ClienteDao {
 	
-	public ArrayList<ClienteVO> listarPersona(){
-		ArrayList<ClienteVO> ListaCliente = new ArrayList<ClienteVO>();
-		Conexion conex = new Conexion();
+	public ArrayList<ClienteVO> listarClientes(){
+		ArrayList<ClienteVO> listaCliente = new  ArrayList<ClienteVO>();
+		Conexion conex = new Conexion(); 
+		
 		try {
-			String query="SELECT idClientes,nombre,apellidos FROM clientes";
-			PreparedStatement consulta= conex.getConnection().prepareStatement(query);
-			ResultSet res= consulta.executeQuery();
-			
-			while(res.next()) {
-				ClienteVO cliente = new ClienteVO();
-				cliente.setIdCliente(res.getInt("idClientes"));
-				cliente.setNombreCliente(res.getString("nombre"));
-				cliente.setApellidoCliente(res.getString("apellidos"));
-				ListaCliente.add(cliente);
-				}
-			res.close();
-			consulta.close();
-			conex.desconectar();
-		}
+			   String query="SELECT cedula_cliente,direccion_cliente,email_cliente, nombre_cliente, telefono_cliente FROM clientes";
+			   PreparedStatement consulta= conex.getConnection().prepareStatement(query);
+			   ResultSet res= consulta.executeQuery();
+			   
+			   while(res.next()) {
+				   ClienteVO cliente = new ClienteVO();
+				   cliente.setCedulaCliente(res.getInt("cedula_cliente"));
+				   cliente.setDireccion(res.getString("direccion_cliente"));
+				   cliente.setCorreoElectronico(res.getString("email_cliente"));
+				   cliente.setNombreCompleto(res.getString("nombre_cliente"));
+				   cliente.setTelefono(res.getString("telefono_cliente"));
+				   listaCliente.add(cliente);
+				   }
+			   res.close();
+			   consulta.close();
+			   conex.desconectar();
+		   }
+		   
+	   
+			catch (Exception e) {
+			   // TODO: handle exception
+				JOptionPane.showMessageDialog(null, e);
+		   }
+		   return listaCliente;
+		   
+	   
+	   
 		
-	
-		 catch (Exception e) {
-			// TODO: handle exception
-			 JOptionPane.showMessageDialog(null, e);
-		}
-		return ListaCliente;
+	   
+	   
+	   
+	   
+   }
+   
+   public ArrayList<ClienteVO> buscarCliente(){
+		ArrayList<ClienteVO> listaCliente = new  ArrayList<ClienteVO>();
+	Conexion conex = new Conexion();
 		
-	};
-	
-	
+		try {
+			   String query="SELECT cedula_cliente,direccion_cliente,email_cliente, nombre_cliente, telefono_cliente FROM clientes where cedula_cliente=? ";
+			   PreparedStatement consulta= conex.getConnection().prepareStatement(query);
+			   ResultSet res= consulta.executeQuery();
+			   
+			   while(res.next()) {
+				   ClienteVO cliente = new ClienteVO();
+				   cliente.setCedulaCliente(res.getInt("cedula_cliente"));
+				   cliente.setDireccion(res.getString("direccion_cliente"));
+				   cliente.setCorreoElectronico(res.getString("email_cliente"));
+				   cliente.setNombreCompleto(res.getString("nombre_cliente"));
+				   cliente.setTelefono(res.getString("telefono_cliente"));
+				   listaCliente.add(cliente);
+				   }
+			   res.close();
+			   consulta.close();
+			   conex.desconectar();
+		   }
+		   
+	   
+			catch (Exception e) {
+			   // TODO: handle exception
+				JOptionPane.showMessageDialog(null, e);
+		   }
+		   return listaCliente;
+		   
+	   
+	   
+	   }
+   
+   
+   
+   
+   
+   
+   public void registrarCliente(ClienteVO cliente) {
+	   Conexion conex= new Conexion();
+	   try {
+		   String query="insert into clientes (cedula_cliente,direccion_cliente,email_cliente, nombre_cliente, telefono_cliente) values =(?,?,?,?,?) ";
+		   PreparedStatement consulta= conex.getConnection().prepareStatement(query);
+		   consulta.setInt(1, cliente.getCedulaCliente());
+		   consulta.setString(2, cliente.getDireccion());
+		   consulta.setString(3,cliente.getCorreoElectronico());
+		   consulta.setString(4,cliente.getNombreCompleto());
+		   consulta.setString(5, cliente.getTelefono());
+		   consulta.executeUpdate();
+		   consulta.close();
+		   conex.desconectar();
+		   
+		   
+	   } catch (Exception e) {
+		   // TODO: handle exception
+	   }
+   }
+   
+   
+   public void borrarCliente (ClienteVO cliente ) {
+	   Conexion conex = new Conexion();
+	   try {
+		   String query =" delete from clientes where cedula_cliente=? ";
+		   PreparedStatement consulta= conex.getConnection().prepareStatement(query);
+		   consulta.setInt(1, cliente.getCedulaCliente());
+		   consulta.executeUpdate();
+		   consulta.close();
+		   conex.desconectar();
+		   
+		   
+		   
+	   } catch (Exception e) {
+		   // TODO: handle exception
+	   }
+   }
 
-	public ArrayList<ClienteVO> consultarPersona(int id){
-		ArrayList<ClienteVO> lista = new ArrayList<ClienteVO>();
-		Conexion conex = new Conexion();
-		try {
-			String query="SELECT idClientes,nombre,apellidos FROM clientes  where idClientes=?";
-			PreparedStatement consulta= conex.getConnection().prepareStatement(query);
-			consulta.setInt(1, id);
-			ResultSet res=consulta.executeQuery();
-			while(res.next()) {
-				ClienteVO cliente = new ClienteVO();
-				cliente.setIdCliente(res.getInt("idClientes"));
-				cliente.setNombreCliente(res.getString("nombre"));
-				cliente.setApellidoCliente(res.getString("apellidos"));
-				lista.add(cliente);
-				}
-			res.close();
-			consulta.close();
-			conex.desconectar();
-		} catch (Exception e) {
-			System.out.println("eror consultar");// TODO: handle exception
-		}
-		
-		
-		
-		
-		
-		return lista;};
-		
-		public void registrarPersona(ClienteVO persona) {
-			Conexion conex = new Conexion();
-			try {
-				
-				String query =  "INSERT INTO clientes (idClientes,nombre,apellidos) values(?,?,?) ";
-				PreparedStatement consulta= conex.getConnection().prepareStatement(query);
-				consulta.setInt(1, persona.getIdCliente());
-				consulta.setString(2, persona.getNombreCliente());
-				consulta.setString(3, persona.getApellidoCliente());
-				consulta.executeUpdate();
-				consulta.close();
-				conex.desconectar();
-			
-			} catch (Exception e) {
-				System.out.println("error agregar cliente");
-				// TODO: handle exception
-			}
-			
-		};
+   
+   public void actualizarCliente(ClienteVO cliente) {
+	   Conexion conex = new Conexion();
+	   try {
+		   String query=" update clientes  set  nombre_cliente=?,direccion_cliente=?, telefono_cliente=?,email_cliente=? where cedula_cliente=?  ";
+		   PreparedStatement consulta = conex.getConnection().prepareStatement(query);
+		   consulta.setString(1, cliente.getNombreCompleto());
+		   consulta.setString(2, cliente.getDireccion());
+		   consulta.setString(3, cliente.getTelefono());
+		   consulta.setString(4, cliente.getCorreoElectronico());
+		   consulta.setInt(5, cliente.getCedulaCliente());
+		   consulta.executeUpdate();
+		   consulta.close();
+		   conex.desconectar();
+		   
+	   } catch (Exception e) {
+		   // TODO: handle exception
+	   }
+	   
+   }
 	
 	
 }
