@@ -1,6 +1,6 @@
 package com.tiendaMinTicDto;
 
-public class ProveedorVO {
+public class ProveedoresVO {
 	private long nitProveedor;
 	private String ciudadProveedor;
 	private String direccionProveedor;
