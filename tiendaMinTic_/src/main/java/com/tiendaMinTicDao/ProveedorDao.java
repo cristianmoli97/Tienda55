@@ -9,7 +9,7 @@ import com.tiendaMinTicDto.ProveedorVO;
 
 
 public class ProveedorDao {
-	
+	//lo que sea
 	public ArrayList<ProveedorVO> listarProveedores(){			
 			ArrayList<ProveedorVO> listaProveedores =new ArrayList<>();			
 			Conexion conex=new Conexion();			
