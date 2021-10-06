@@ -249,7 +249,7 @@ public class TiendaController {
     
       //Al hacer click sobre alguno de los botones
 	  @PostMapping("/registrarusuarioform")
-	  public String registrarusuario( @Validated UsuariosVO usuario, @RequestParam("evento_boton_crud_producto") String botonCrudUsuario , Model model) {
+	  public String registrarusuario( @Valid UsuariosVO usuario, @RequestParam("evento_boton_crud_producto") String botonCrudUsuario , Model model) {
          
 		  UsuariosVO userDao=new UsuariosVO();
 		  
