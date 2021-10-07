@@ -15,6 +15,7 @@ import com.tiendaMinTicDao.ProductosDAO;
 import com.tiendaMinTicDao.ProveedorDao;
 import com.tiendaMinTicDto.ProductosVO;
 import com.tiendaMinTicDto.UsuariosVO;
+import com.tiendaMinTicDto.UsuariosDao;
 import com.tiendaMinTicDao.ProveedoresDAO;
 import com.tiendaMinTicDto.ProveedoresVO;
 
@@ -264,7 +265,7 @@ public class TiendaController {
     
       //Al hacer click sobre alguno de los botones
 	  @PostMapping("/registrarusuarioform")
-	  public String registrarusuario( @Valid UsuariosVO usuario, @RequestParam("evento_boton_crud_usuario") String botonCrudUsuario , Model model) {
+	  public String registrarusuario( @Valid @ModelAttribte("usuario") UsuariosVO usuario, @ModelAttribute("evento_boton_crud_usuario") String botonCrudUsuario , Model model) {
          
 		  UsuariosDao userDao=new UsuariosDao();
 		  
@@ -287,8 +288,9 @@ public class TiendaController {
 				  
 
 				  break;
+				  
 			  case "Crear":
-				  if(userDao.registrarPersona(usuario)) {
+				  if(userDao.registrarPersona(usuario.getCedula_usuario())).size()>0){
 					  
 					  model.addAttribute("popupMsj", "Usuario guardado en base de datos");
 					  
@@ -305,11 +307,12 @@ public class TiendaController {
 				  
 			  case "Actualizar":
 				  
-			  	  if(userDao.modificarUsuarios(usuario)) {
+			  	  if(userDao.registrarPersona(usuario.getCedula_usuario())).size()>0{
+					  if(userDao.modificarUsuario(usuario)){
 			  		  model.addAttribute("popupMsj", "Usuario actualizado en base de datos");
 					  
 				  }else {
-					  model.addAttribute("popupMsj", "Usuario no actualizado o inexistente intente nuevamente");
+					  model.addAttribute("popupMsj", "Usuario no actualizado, el numero de cedula es incorrecto");
 				  }
 				  usuario.setDefault(); // pone a cero los datos del usuario
 				  model.addAttribute("usuario",usuario);
