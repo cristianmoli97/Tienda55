@@ -251,7 +251,7 @@ public class TiendaController {
 	  @PostMapping("/registrarusuarioform")
 	  public String registrarusuario( @Valid UsuariosVO usuario, @RequestParam("evento_boton_crud_usuario") String botonCrudUsuario , Model model) {
          
-		  UsuariosVO userDao=new UsuariosVO();
+		  UsuariosDao userDao=new UsuariosDao();
 		  
 		  String redireccion = "usuariosForm";
 		  
