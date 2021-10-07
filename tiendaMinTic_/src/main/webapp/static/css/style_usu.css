@@ -76,13 +76,10 @@ nav ul li:hover > ul {
 
 
 
-
-
-
 body {
 	font-size: 12px;
 	font-family: sans-serif;
-	background: none;
+
 }
 h1 {
 	text-align: center;
@@ -110,11 +107,12 @@ span {
 
 
 .form-register {
-  width: 70%;
+  width: 50%;
+
   background: #24303c;
   padding: 30px;
   margin: auto;
-  margin-top: 30px;
+  margin-top: 10px;
   border-radius: 4px;
   font-family: 'calibri';
   color: white;
@@ -122,20 +120,28 @@ span {
 }
 
 .form-register h4 {
+	
   font-size: 22px;
-  margin-bottom: 20px;
+  margin-top: 1px;
+  margin-bottom: 1px;
+}
+
+#produForm {
+	
+  margin-bottom: 5px;
 }
 
 .controls {
-  width: 100%;
+  width: 50%;
   background: #24303c;
   padding: 10px;
   border-radius: 4px;
-  margin-bottom: 16px;
+  margin: 0.5% 25%;
   border: 1px solid #1f53c5;
   font-family: 'calibri';
   font-size: 18px;
   color: white;
+  visibility: hidden;
 }
 
 .controls-file {
@@ -150,7 +156,7 @@ span {
   color: white;
 }
 
-.invisible{visibility:10%;height:10%;width:20%;}
+
 
 .form-register p {
   height: 40px;
@@ -159,24 +165,32 @@ span {
   line-height: 40px;
 }
 
-.form-register a {
-  color: white;
-  text-decoration: none;
-}
+
 
 .form-register a:hover {
   color: white;
   text-decoration: underline;
 }
 
-.form-register .botons {
-  width: 23%;
+.form-register .botons{
+  width: 20%;
   background: #1f53c5;
   border: none;
   border-radius: 5px;
-  padding: 12px;
+  padding: 1%;
   color: white;
-  margin: 10px 5px 5px 5px;
+  margin: 0.1% 1.5% 0.1% 0.1%;
+  font-size: 16px;
+}
+
+.form-register .botonsaceptar{
+  width: 20%;
+  background: #1f53c5;
+  border: none;
+  border-radius: 5px;
+  padding: 1%;
+  color: white;
+  margin: 0.1% 1.5% 0.1% 0.1%;
   font-size: 16px;
 }
 
@@ -185,7 +199,7 @@ span {
   background: #1f53c5;
   border: none;
   border-radius: 5px;
-  padding: 13px 47px;
+  padding: 10px 20px;
   color: white;
   margin: 10px 5px 5px 5px;
   font-size: 16px;
@@ -193,15 +207,33 @@ span {
 
 .botones {
     text-align: center;
-    margin:20px;
+    margin: 1% 2%;
    
 }
+
+
+.botonaceptar {
+	
+    text-align: center;
+    margin: 1% 2%;
+   
+}
+
+.botonsaceptar:hover{
+  outline: none;
+  box-shadow: 3px 3px 10px #333;
+  background: rgba(22,128,205,.7);
+}
+
+
 
 .botons:hover{
   outline: none;
   box-shadow: 3px 3px 10px #333;
   background: rgba(22,128,205,.7);
 }
+
+
 
 .upload-response{
 	 margin: 1% 1% 9px 10%;
