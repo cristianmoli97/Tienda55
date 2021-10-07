@@ -27,10 +27,19 @@
 		
 	</ul>
 </nav>
-
     <div class=botones>
     	<input class="botons" type="submit" name="Cargar" id="cargaDocu" value="cargar">
     </div>
+	<div>
+       		<h2>Registro exitoso</h2>
+        	<span>Cedula:</span><span>${user.cedula_usuario)</span><br/>
+        	<span>Nombre:</span><span>${user.nombre_usuario}</span><br/>
+        	<span>Correo:</span><span>${user.email_usuario}</span><br/>
+        	<span>Usuario:</span><span>${user.usuario</span><br/>
+		<span>Password:</span><span>${user.password</span><br/>
+	    </div>
+	
+
 
 </body>
 </html>
