@@ -103,11 +103,12 @@ public ArrayList<ProductosVO> listarProductos(){
 						  +")";
 
 			PreparedStatement consulta = conex.getConnection().prepareStatement(cadena);
-						 
-				  if (this.buscarProducto(prod.getCodigoProducto()) == null) {  // si el producto no esxiste registra producto
+
+				  if (this.buscarProducto(prod.getCodigoProducto()) == null) {  // si el producto  registra producto
 						consulta.executeUpdate(cadena);
 						estatus =  true;	
 				  }  
+				
 				 
 				
 				consulta.close();
@@ -127,7 +128,7 @@ public ArrayList<ProductosVO> listarProductos(){
 		boolean estatus=false;
 		Conexion conex=new Conexion();
 		try{
-			String cadena ="UPDATE producto SET ivacompra = ?,nitproveedor = ?, nombre_producto = ?, precio_compra = ?,"
+			String cadena ="UPDATE productos SET ivacompra = ?,nitproveedor = ?, nombre_producto = ?, precio_compra = ?,"
 					+ "precio_venta = ? WHERE codigo_producto = ? ";
 			PreparedStatement consulta = conex.getConnection().prepareStatement(cadena);
 			
