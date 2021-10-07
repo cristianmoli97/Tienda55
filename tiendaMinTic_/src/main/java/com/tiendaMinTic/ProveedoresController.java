@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.tiendaMinTic.CSV.Servicios.ServicioAutenticar;
 import com.tiendaMinTicDao.ProductosDAO;
+import com.tiendaMinTicDto.ClienteVO;
 import com.tiendaMinTicDto.ProductosVO;
 import com.tiendaMinTicDto.UsuariosVO; 
 
