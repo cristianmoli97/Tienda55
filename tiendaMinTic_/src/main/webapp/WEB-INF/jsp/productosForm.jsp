@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,7 +33,7 @@
 
 
   <section class="form-register">
-  <form:form action="registrarproductoform"  method="post" modelAttribute="producto" id="produForm"> 
+  <form:form action="crudproductoform"  method="post" modelAttribute="producto" id="produForm"> 
     <h4>Seleccione operacion a realizar:</h4>
     <div class=botones>
     	<button class="botons" id="btn_consultar" type="button">Consultar</button>
@@ -47,7 +48,36 @@
     <form:input class="controls" type="text" path="nombreProducto" name="nombreProducto" id="nombreProducto" pattern="[a-z,A-Z,0-9]{1,15}" placeholder="nombre Producto"/>
     <form:input class="controls" type="text" path="precioCompra" name="precioCompra" id="precioCompra" pattern="[0-9]{1,10}" placeholder="precio Compra"/>
     <form:input class="controls" type="text" path="precioVenta" name="precioVenta" id="precioVenta" pattern="[0-9]{1,10}" placeholder="precio Venta"/>
+    <div id="tabla" style="position: absolute; left: 25%; top: 35%; visibility: ${tableActive};">
+ 
+    <table border="1" class="styled-table">
     
+            <thead>
+                <tr>
+                    <th>codigoProducto</th>
+                    <th>ivacompra</th>
+                    <th>nitproveedor</th>
+                    <th>nombreProducto</th>
+                    <th>precioCompra</th>
+                    <th>precioVenta</th>
+                </tr>
+            </thead>
+            <tbody>
+            <c:forEach var="f" items="${listaproducto}">                
+                <tr>
+                    <td>${f.getCodigoProducto()}</td>
+                    <td>${f.getIvaCompra()}</td>
+                    <td>${f.getNitProveedor()}</td>
+                    <td>${f.getNombreProducto()}</td>
+                    <td>${f.getPrecioCompra()}</td>
+                    <td>${f.getPrecioVenta()}</td>
+                </tr>
+            </c:forEach> 
+        </tbody>
+    </table>
+
+    
+    </div>
     <div class=botonaceptar>
     	<input class="botonsaceptar" type="submit" id="btn_aceptar" name="evento_boton_crud_producto" style="visibility:hidden" />
     	
