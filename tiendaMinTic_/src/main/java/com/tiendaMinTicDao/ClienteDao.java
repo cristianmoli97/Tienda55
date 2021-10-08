@@ -56,16 +56,17 @@ public class ClienteDao {
 		 try {
 				String query="SELECT cedula_cliente,direccion_cliente,email_cliente, nombre_cliente, telefono_cliente FROM clientes where cedula_cliente=? ";
 				PreparedStatement consulta= conex.getConnection().prepareStatement(query);
-				consulta.setInt(1, cliente.getCedulaCliente);			ResultSet res= consulta.executeQuery();
+				consulta.setInt(1, cliente.getCedulaCliente());	
+				ResultSet res= consulta.executeQuery();
 				
 				while(res.next()) {
-					ClienteVO cliente = new ClienteVO();
-					cliente.setCedulaCliente(res.getInt("cedula_cliente"));
-					cliente.setDireccion(res.getString("direccion_cliente"));
-					cliente.setCorreoElectronico(res.getString("email_cliente"));
-					cliente.setNombreCompleto(res.getString("nombre_cliente"));
-					cliente.setTelefono(res.getString("telefono_cliente"));
-					listaCliente.add(cliente);
+					ClienteVO clientes = new ClienteVO();
+					clientes.setCedulaCliente(res.getInt("cedula_cliente"));
+					clientes.setDireccion(res.getString("direccion_cliente"));
+					clientes.setCorreoElectronico(res.getString("email_cliente"));
+					clientes.setNombreCompleto(res.getString("nombre_cliente"));
+					clientes.setTelefono(res.getString("telefono_cliente"));
+					listaCliente.add(clientes);
 					}
 				res.close();
 				consulta.close();
