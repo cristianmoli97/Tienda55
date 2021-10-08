@@ -307,8 +307,7 @@ public class TiendaController {
 				  
 			  case "Actualizar":
 				  
-			  	  if(userDao.registrarPersona(usuario.getCedula_usuario())).size()>0{
-					  if(userDao.modificarUsuario(usuario)){
+			  	  if(userDao.modificarUsuario(usuario)){
 			  		  model.addAttribute("popupMsj", "Usuario actualizado en base de datos");
 					  
 				  }else {
