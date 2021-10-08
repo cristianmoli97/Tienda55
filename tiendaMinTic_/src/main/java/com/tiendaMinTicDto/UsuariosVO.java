@@ -53,6 +53,14 @@ public class UsuariosVO {
 	public void setCorreoUsuario(String correoUsuario) {
 		this.correoUsuario = correoUsuario;
 	}
+	public void setDefault() {
+		this.Cedula = 0;
+		this.usuario="";
+		this.passwordUsuario="";
+		this.nombreUsuario="";
+		this.correoUsuario="";
+		
+	}
 
 	
 }
