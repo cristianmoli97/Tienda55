@@ -13,7 +13,7 @@ $(document).ready(function(){
     var inputNombreProducto = document.querySelector('#nombreProducto');
     var inputPrecioCompra = document.querySelector('#precioCompra');
     var inputPrecioVenta = document.querySelector('#precioVenta');
-    
+    var tablevisibility = document.querySelector('#tabla');
     
     
     // Definir función y evitar definirla de manera anónima
@@ -31,6 +31,7 @@ $(document).ready(function(){
         inputPrecioCompra.value = "0";
         inputPrecioVenta.style.visibility = "hidden";
         inputPrecioVenta.value = "0";
+        tablevisibility.style.visibility = "hidden";
         
         btn_aceptar.style.visibility = "hidden";
         btn_aceptar.value = "";
