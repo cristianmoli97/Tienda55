@@ -17,21 +17,21 @@ public class ClienteControlador {
 		
 		
 		
-		return dao.listarPersona();}
+		return dao.listarClientes();}
 	
 	
 	
 	@RequestMapping("/consultarCliente")
-	public  ArrayList<ClienteVO> consultar(int id){
+	public  ArrayList<ClienteVO> consultar(int cedula){
 		ClienteDao dao  = new  ClienteDao();
 		
-		return dao.consultarPersona(id);
+		return dao.buscarCliente(cedula);
 		
 	}
 	
 	@RequestMapping("/agregarCliente")
 	public void agregarCliente (ClienteVO persona) {
 		ClienteDao  dao =new ClienteDao();
-		dao.registrarPersona(persona);
+		dao.registrarCliente(persona);
 	}
 }

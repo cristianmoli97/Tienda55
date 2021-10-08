@@ -49,14 +49,14 @@ public class ClienteDao {
 		
 	}
 	
-	public ArrayList<ClienteVO> buscarCliente(ClienteVO cliente){
+	public ArrayList<ClienteVO> buscarCliente(int cedula){
 		 ArrayList<ClienteVO> listaCliente = new  ArrayList<ClienteVO>();
 	 Conexion conex = new Conexion();
 		 
 		 try {
 				String query="SELECT cedula_cliente,direccion_cliente,email_cliente, nombre_cliente, telefono_cliente FROM clientes where cedula_cliente=? ";
 				PreparedStatement consulta= conex.getConnection().prepareStatement(query);
-				consulta.setInt(1, cliente.getCedulaCliente());	
+				consulta.setInt(1, cedula);	
 				ResultSet res= consulta.executeQuery();
 				
 				while(res.next()) {
