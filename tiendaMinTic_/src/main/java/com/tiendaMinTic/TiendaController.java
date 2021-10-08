@@ -11,12 +11,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.tiendaMinTic.CSV.Servicios.ServicioAutenticar;
-import com.tiendaMinTicDao.ProductosDAO;
-import com.tiendaMinTicDao.ProveedorDao;
-import com.tiendaMinTicDto.ProductosVO;
 import com.tiendaMinTicDto.UsuariosVO;
-import com.tiendaMinTicDto.UsuariosDao;
 import com.tiendaMinTicDao.ProveedoresDAO;
+import com.tiendaMinTicDao.UsuariosDao;
 import com.tiendaMinTicDto.ProveedoresVO;
 
 @Controller
@@ -48,122 +45,14 @@ public class TiendaController {
         if (!userAutenticar.autenticar(usuVO)) {
             mav.setViewName("redirect:login");
         }else {
-        	mav.setViewName("redirect:prodcrud");
+        	mav.setViewName("redirect:producto");
         }
         return mav;
     }
 	
-	
-	// Interfaz cargar archivo csv
-	@GetMapping(value = {"/producto"})
-	  public ModelAndView prodcsv(){
 
-		  ModelAndView mav = new ModelAndView("productos");
-	  
-	  return mav; }
 	
 	
-	 // CRUD Productos
-    @GetMapping(value = {"/prodcrud"})  
-    public String updateContact(Model model) {
-    	ProductosVO producto = new ProductosVO();
-        model.addAttribute("producto",producto);
-        model.addAttribute("popupActive", "hidden");
-        model.addAttribute("popupMsj", "");
-        return "productosForm";
- }
-    
-      //Al hacer click sobre alguno de los botones
-	  @PostMapping("/registrarproductoform")
-	  public String registrarusuario(@Valid @ModelAttribute("producto") ProductosVO producto,@ModelAttribute("evento_boton_crud_producto") String botonCrudProducto , Model model) {
- 
-		  ProductosDAO prodDao=new ProductosDAO();
-		  ProveedorDao provDao = new ProveedorDao();
-		  
-		  String redireccion = "productosForm";
-		
-		  switch(botonCrudProducto) {
-			  case "Consultar":
-				 
-				  if(prodDao.buscarProducto(producto.getCodigoProducto()) != null) {
-					  
-					  
-					  model.addAttribute("popupMsj", "Producto en base de datos");
-					  
-				  }else {
-					  model.addAttribute("popupMsj", "Producto inexistente");
-				  }
-				  producto.setDefault(); // pone a cero los datos del producto
-				  model.addAttribute("producto",producto);
-			
-				  model.addAttribute("popupActive", "visible");
-				  
-
-				  break;
-			  case "Crear":
-				 
-				  if(provDao.buscarProveedor(producto.getNitProveedor()).size() > 0){  // si existe el proveedor procede a regitrar
-					  if(prodDao.registrarProducto(producto)) {
-					  
-						  model.addAttribute("popupMsj", "Producto guardado enbase de datos");
-					  
-					  }else {
-						  model.addAttribute("popupMsj", "Producto ya registrado, o no creado intente nuevamente");
-					  }
-				  }else {
-					  
-					  model.addAttribute("popupMsj", "Producto no registrado, Nit proveedor incorrecto");
-				  }
-				  producto.setDefault(); // pone a cero los datos del producto
-				  model.addAttribute("producto",producto);
-			
-				  model.addAttribute("popupActive", "visible");
-				  
-				  
-				  break;
-				  
-			  case "Actualizar":
-
-				  if(provDao.buscarProveedor(producto.getNitProveedor()).size() > 0){  // si existe el proveedor procede a actualizar
-					  if(prodDao.actualizarProducto(producto)) {
-						  model.addAttribute("popupMsj", "Producto actualizado en base de datos");
-					  
-					  }else {
-						  model.addAttribute("popupMsj", "Producto no actualizado o inexistente intente nuevamente");
-					  }
-					  
-				  }else {
-					  model.addAttribute("popupMsj", "Producto no Actualizado, Nit proveedor incorrecto");
-				  }
-				  
-				  producto.setDefault(); // pone a cero los datos del producto
-				  model.addAttribute("producto",producto);
-		
-				  model.addAttribute("popupActive", "visible");
-				  break;
-				  
-			  case "Borrar":
-				  
-			  	  if(prodDao.eliminarProducto(producto.getCodigoProducto())) {
-			  		  model.addAttribute("popupMsj", "Producto eliminado de enbase de datos");
-					  
-				  }else {
-					  model.addAttribute("popupMsj", "Producto no eliminado o inexistente");
-				  }
-				  producto.setDefault(); // pone a cero los datos del producto
-				  model.addAttribute("producto",producto);
-			
-				  model.addAttribute("popupActive", "visible");
-			  				  
-			default:
-				break;
-				
-		  }
-
-		  return redireccion;
-					  
-
-	  }
 	  
 	// CRUD Proveedores
 	  @GetMapping(value = {"/proveedorescrud"})  
@@ -265,7 +154,7 @@ public class TiendaController {
     
       //Al hacer click sobre alguno de los botones
 	  @PostMapping("/registrarusuarioform")
-	  public String registrarusuario( @Valid @ModelAttribte("usuario") UsuariosVO usuario, @ModelAttribute("evento_boton_crud_usuario") String botonCrudUsuario , Model model) {
+	  public String registrarusuario(  @ModelAttribute("usuario") UsuariosVO usuario, @ModelAttribute("evento_boton_crud_usuario") String botonCrudUsuario , Model model) {
          
 		  UsuariosDao userDao=new UsuariosDao();
 		  
@@ -273,7 +162,7 @@ public class TiendaController {
 		  
 		  switch(botonCrudUsuario) {
 			  case "Consultar":
-				  if(userDao.consultarUsuario (usuario.getCedula_usuario()) != null) {
+				  if(userDao.consultarUsuario (usuario.getCedula()) != null) {
 					  
 					  model.addAttribute("popupMsj", "Usuario en base de datos");
 					  
@@ -284,18 +173,19 @@ public class TiendaController {
 				  model.addAttribute("usuario",usuario);
 			
 				  model.addAttribute("popupActive", "visible");
-	
-				  
-
 				  break;
 				  
 			  case "Crear":
-				  if(userDao.registrarPersona(usuario.getCedula_usuario())).size()>0){
+
+				  if(userDao.consultarUsuario(usuario.getCedula()).size()>0){  //si el usuario no existe lo crea
+					if(userDao.registrarPersona(usuario)){
 					  
-					  model.addAttribute("popupMsj", "Usuario guardado en base de datos");
-					  
-				  }else {
-					  model.addAttribute("popupMsj", "Usuario ya registrado o no creado intente nuevamente");
+						model.addAttribute("popupMsj", "Usuario guardado en base de datos");
+						
+					}else {
+						model.addAttribute("popupMsj", "Usuario ya registrado o no creado intente nuevamente");
+					}
+					model.addAttribute("popupMsj", "Usuario Creado, ya existe");
 				  }
 				  usuario.setDefault(); // pone a cero los datos del usuario
 				  model.addAttribute("usuario", usuario);
@@ -307,13 +197,15 @@ public class TiendaController {
 				  
 			  case "Actualizar":
 				  
-			  	  if(userDao.registrarPersona(usuario.getCedula_usuario())).size()>0{
-					  if(userDao.modificarUsuario(usuario)){
-			  		  model.addAttribute("popupMsj", "Usuario actualizado en base de datos");
+			    if(userDao.consultarUsuario(usuario.getCedula()).size()>0){
+					  if(userDao.modificarUsuarios(usuario)){
+			  		  	model.addAttribute("popupMsj", "Usuario actualizado en base de datos");
 					  
-				  }else {
+				  	  }else {
 					  model.addAttribute("popupMsj", "Usuario no actualizado, el numero de cedula es incorrecto");
-				  }
+				  	 }
+					   model.addAttribute("popupMsj", "Usuario no actualizado, no existe");
+					}
 				  usuario.setDefault(); // pone a cero los datos del usuario
 				  model.addAttribute("usuario",usuario);
 			
@@ -323,7 +215,7 @@ public class TiendaController {
 				  
 			  case "Borrar":
 				  
-			  	  if(userDao.eliminarUsuario(usuario.getCedula_usuario())) {
+			  	  if(userDao.eliminarUsuario(usuario.getCedula())) {
 			  		  model.addAttribute("popupMsj", "Usuario eliminado de enbase de datos");
 					  
 				  }else {
@@ -340,12 +232,7 @@ public class TiendaController {
 		  }
 		  
 		  return redireccion;
-					  
-
-	  }
-    
-	
-
-}
+		}
+	}
 
 
