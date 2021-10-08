@@ -23,34 +23,32 @@ public class ServicioUploadCSV {
 
   ProductosDAO productosDAO = new ProductosDAO();
   
-  public static boolean hasCSVFormat(MultipartFile file) {
-	  
-	String TYPE = "application/vnd.ms-excel";
-	  
-    if (!TYPE.equals(file.getContentType())) {
-      return false;
-    }
-
-    return true;
-  }
-  
-
-  public void save(MultipartFile file) {
+  public boolean save(MultipartFile file) {
+	  boolean subida = false;
     try {
       //Crea lista de productos desde csv	
       List<ProductosVO> listaproductos = csvToProductos(file.getInputStream());
       
       //cargo a DB
       for(ProductosVO prodVo: listaproductos) {
-    	  productosDAO.registrarProducto(prodVo);
-    	  
-      }
+    	  try {
+    		  productosDAO.registrarProducto(prodVo);
+
+    	  }catch (Exception e) {
+    		  throw new RuntimeException("aquiiiiiiiiiiiiii: " + e.getMessage());
+    	  }
+    	 }
+      
+      
+      subida = true;
       
 
       
     } catch (IOException e) {
       throw new RuntimeException("falla carga csv: " + e.getMessage());
     }
+    
+    return subida;
   }
   
 
@@ -67,10 +65,7 @@ public class ServicioUploadCSV {
     try (BufferedReader fileReader = new BufferedReader(new InputStreamReader(is, "UTF-8")); 
     		
 		CSVParser csvParser = new CSVParser(fileReader,CSVFormat.RFC4180.withFirstRecordAsHeader());
-    		) {
-    	
-
-     
+    		) {    
 
       Iterable<CSVRecord> csvRecords = csvParser.getRecords();
     
