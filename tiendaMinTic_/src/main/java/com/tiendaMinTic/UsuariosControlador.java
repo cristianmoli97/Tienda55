@@ -1,6 +1,5 @@
 package com.tiendaMinTic;
 
-import java.util.ArrayList;
 
 
 import com.tiendaMinTicDao.UsuariosDao;
