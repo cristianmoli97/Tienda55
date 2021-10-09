@@ -130,11 +130,11 @@ public class ReportesControlador {
 					  model.addAttribute("labelcampo1","Cedula Cliente");
 					  model.addAttribute("labelcampo2","Nombre Cliente");
 					  model.addAttribute("labelcampo3","Valor Total ventas");
-					  model.addAttribute("labelcampo4","");
+					  model.addAttribute("labelcampo4","Total Ventas");
 					  model.addAttribute("labelcampo5","");
 					  
 					  ClienteDao clidao2 = new ClienteDao();
-					  
+					  double suma = 0.0;
 					  
 					  
 					  for( VentasVO ventas1: listaventas) {
@@ -148,10 +148,10 @@ public class ReportesControlador {
 							  }
 						  
 						  }
-								  
+						  suma = suma + ventas1.getTotalVenta();	  
 						  repor.setCampo1(String.valueOf(ventas1.getCedulaCliente())); 
 						  repor.setCampo3(String.valueOf(ventas1.getTotalVenta()));
-						  repor.setCampo4("");
+						  repor.setCampo4(String.valueOf(suma));
 						  repor.setCampo5("");
 						  repor.setCampo6("");
 						  listrepo.add(repor);

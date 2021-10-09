@@ -5,8 +5,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-
 import com.tiendaMinTicDto.VentasVO;
+
+
 
 public class VentasDAO {
 
@@ -24,7 +25,7 @@ public class VentasDAO {
 				ventas.setCedulaCliente(res.getLong("cedula_cliente"));
 				ventas.setCedulaUsuario(res.getLong("cedula_usuario"));
 				ventas.setIvaVenta(res.getDouble("ivaventa"));
-				ventas.setIvaVenta(res.getDouble("total_venta"));
+				ventas.setTotalVenta(res.getDouble("total_venta"));
 				ventas.setValorVenta(res.getDouble("valor_venta"));
 				listaventas.add(ventas);
 			}
@@ -59,7 +60,7 @@ public class VentasDAO {
 				ventas.setCedulaCliente(res.getLong("cedula_cliente"));
 				ventas.setCedulaUsuario(res.getLong("cedula_usuario"));
 				ventas.setIvaVenta(res.getDouble("ivaventa"));
-				ventas.setIvaVenta(res.getDouble("total_venta"));
+				ventas.setTotalVenta(res.getDouble("total_venta"));
 				ventas.setValorVenta(res.getDouble("valor_venta"));
 				listaVentas.add(ventas);
 			}

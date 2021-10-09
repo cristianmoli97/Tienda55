@@ -73,8 +73,6 @@ public class VentasVO {
 	public void setValorVenta(double valorVenta) {
 		this.valorVenta = valorVenta;
 	}
-	
-	
-	
+		
 
 }
