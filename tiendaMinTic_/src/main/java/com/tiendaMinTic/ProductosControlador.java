@@ -48,7 +48,7 @@ public class ProductosControlador {
 	    
 	      //Al hacer click sobre alguno de los botones
 		  @PostMapping("/crudproductoform")
-		  public String registrarusuario(@Valid @ModelAttribute("producto") ProductosVO producto,@ModelAttribute("evento_boton_crud_producto") String botonCrudProducto , Model model) {
+		  public String registrarproducto(@Valid @ModelAttribute("producto") ProductosVO producto,@ModelAttribute("evento_boton_crud_producto") String botonCrudProducto , Model model) {
 	 
 			  ProductosDAO prodDao=new ProductosDAO();
 			  ProveedoresDAO provDao = new ProveedoresDAO();
