@@ -25,7 +25,7 @@
       		</ul>
       	</li>
 		<li><a href="#">Ventas</a></li>
-		<li><a href="/reportes">Reportes</a></li>
+		<li><a href="/reportesall">Reportes</a></li>
 		<li><a href="/login">logout</a></li>
 		
 	</ul>
@@ -51,17 +51,17 @@
     
     </div>
 
-    <div id="tabla" style="position: absolute; left: 25%; top: 50%; visibility: ${tableActive};">
+    <div id="tabla" style="position: absolute; left: 30%; top: 50%; visibility: ${tableActive};">
  
     <table border="1" class="styled-table">
     
             <thead>
                 <tr>
-                    <th>${labelcampo1}</th>
-                    <th>${labelcampo2}<</th>
-                    <th>${labelcampo3}<</th>
-                    <th>${labelcampo4}<</th>
-                    <th>${labelcampo5}<</th>
+                    <th id="repocol1c">${labelcampo1}</th>
+                    <th id="repocol2c">${labelcampo2}</th>
+                    <th id="repocol3c">${labelcampo3}</th>
+                    <th id="repocol4c"class='unselectable'>${labelcampo4}</th>
+                    <th id="repocol5c" class='unselectable'>${labelcampo5}</th>
                 </tr>
             </thead>
             <tbody>
@@ -70,7 +70,7 @@
                     <td id="repocol1">${f.getCampo1()}</td>
                     <td id="repocol2">${f.getCampo2()}</td>
                     <td id="repocol3">${f.getCampo3()}</td>
-                    <td id="repocol4"  class='unselectable'>${f.getCampo4()}</td>
+                    <td id="repocol4"  class='unselectable' >${f.getCampo4()}</td>
                     <td id="repocol5" class='unselectable'>${f.getCampo5()}</td>
                 </tr>
             </c:forEach> 
