@@ -142,15 +142,7 @@ public class TiendaController {
 					  
 
 	  }	  
-    // CRUD Usuarios
-    @GetMapping(value = {"/usuarioscrud"})  
-    public String updateContact(Model model) {
-    	UsuariosVO usuario = new UsuariosVO();
-        model.addAttribute("usuario",usuario);
-        model.addAttribute("popupActive", "hidden");
-        model.addAttribute("popupMsj", "");
-        return "usuariosForm";
- 	}
+
     
       
 	}
