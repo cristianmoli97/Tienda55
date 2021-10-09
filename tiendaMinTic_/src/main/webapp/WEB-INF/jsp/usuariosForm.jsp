@@ -30,7 +30,7 @@
   </nav>
 
   <section class="form-register">
-  <form:form action="registrarusuarioform"  method="post" modelAttribute="usuario" id="usuarioForm"> 
+  <form:form action="crudusuarioform"  method="post" modelAttribute="usuario" id="usuarioForm"> 
     <h4>Seleccione operacion a realizar:</h4>
     <div class=botones>
     	<button class="botons" id="btn_consultar" type="button">Consultar</button>
@@ -44,7 +44,30 @@
     <form:input class="controls" type="text" path="passwordUsuario" name="passwordUsuario" id="passwordUsuario" pattern="[a-z,A-Z,0-9]{1,15}" placeholder="passwordUsuario"/>
     <form:input class="controls" type="text" path="nombreUsuario" name="nombreUsuario" id="nombreUsuario" pattern="[a-z,A-Z,0-9]{1,15}" placeholder="nombreUsuario"/>
     <form:input class="controls" type="text" path="emailUsuario" name="emailUsuario" id="emailUsuario" pattern="[a-z,A-Z,0-9]{1,15}" placeholder="emailUsuario"/>
-
+     <div id="tabla" style="position: absolute; left: 25%; top: 35%; visibility: ${tableActive};">
+  <table border="1" class="styled-table">
+    
+            <thead>
+                <tr>
+                    <th>cedula</th>
+                    <th>usuario</th>
+                    <th>passworUsuario</th>
+                    <th>nombreUsuario</th>
+                    <th>emailUsuario</th>
+                 </tr>
+            </thead>
+            <tbody>
+            <c:forEach var="f" items="${listausuario}">                
+                <tr>
+                    <td>${f.getCedula()}</td>
+                    <td>${f.getUsuario()}</td>
+                    <td>${f.getPassworUsuario()}</td>
+                    <td>${f.getNombreUsuario()}</td>
+                    <td>${f.getEmailUsuario()}</td>
+                </tr>
+            </c:forEach> 
+        </tbody>
+    </table>
     
     <div class=botonaceptar>
     	<input class="botonsaceptar" type="submit" id="btn_aceptar" name="evento_boton_crud_usuario" style="visibility:hidden" />
