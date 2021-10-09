@@ -1,5 +1,3 @@
-import javax.validation.Valid;
-
 import com.tiendaMinTicDao.ProveedoresDAO;
 import com.tiendaMinTicDto.ProveedoresVO;
 
@@ -25,7 +23,7 @@ public class ProveedorControlador {
 
 //Al hacer click sobre alguno de los botones
 @PostMapping("/registrarproveedorform")
-public String registrarProveedor(@Valid ProveedoresVO proveedor, @RequestParam("evento_boton_crud_proveedor") String botonCrudProveedor , Model model) {
+public String registrarProveedor(@ModelAttribute("proveedor") ProveedoresVO proveedor, @RequestParam("evento_boton_crud_proveedor") String botonCrudProveedor , Model model) {
    
 	ProveedoresDAO provDao=new ProveedoresDAO();
 	
