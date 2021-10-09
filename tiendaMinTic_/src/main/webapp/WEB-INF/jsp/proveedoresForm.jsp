@@ -9,22 +9,22 @@
 <link href="/static/css/style_usu.css" rel="stylesheet" type="text/css">  
 </head>
 <body>
-<nav>
-	<ul>
-		<li><a href="#">Usuarios</a>
-		<li><a href="#">Clientes</a></li>
-		<li><a href="proveedorescrud">Proveedores</a></li>
-		<li><a href="producto">Productos</a>
-			<ul>
-      			<li><a href="prodcrud">CRUD</a></li>
-      		</ul>
-      	</li>
-		<li><a href="#">Ventas</a></li>
-		<li><a href="#">Reportes</a></li>
-		<li><a href="/login">logout</a></li>
-		
-	</ul>
-</nav>
+	<nav>
+		<ul>
+			<li><a href="usuarioscrud">Usuarios</a>
+			<li><a href="clienteForm">Clientes</a></li>
+			<li><a href="proveedorescrud">Proveedores</a></li>
+			<li><a href="producto">Productos</a>
+				<ul>
+					  <li><a href="prodcrud">CRUD</a></li>
+				  </ul>
+			  </li>
+			<li><a href="#">Ventas</a></li>
+			<li><a href="/reportesall">Reportes</a></li>
+			<li><a href="/login">logout</a></li>
+			
+		</ul>
+	</nav>
 
 <section class="form-register">
   <form:form action="registrarproveedorform" method="POST" modelAttribute="proveedor"> 
