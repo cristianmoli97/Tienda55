@@ -45,7 +45,7 @@ public class TiendaController {
         if (!userAutenticar.autenticar(usuVO)) {
             mav.setViewName("redirect:login");
         }else {
-        	mav.setViewName("redirect:producto");
+        	mav.setViewName("redirect:usuarioscrud");
         }
         return mav;
     }

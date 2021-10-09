@@ -78,7 +78,7 @@ public class UsuariosDao {
 	}
 
 
-	public boolean registrarPersona(UsuariosVO user){
+	public boolean registrarUsuario(UsuariosVO user){
 		boolean estatus = false;
 		Conexion conex=new Conexion();
 		if (conex != null && user != null) { 

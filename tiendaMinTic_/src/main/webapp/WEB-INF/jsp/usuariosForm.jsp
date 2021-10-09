@@ -79,7 +79,7 @@
     <div class="content">
         <div class="content-text">${popupMsj}. 
         
-        <div class="content-buttons"> <a href="usuarioscrud" id="close-button2">Aceptar</a></div>
+        <div class="content-buttons"> <a href="crudusuarioform" id="close-button2">Aceptar</a></div>
     	</div>
 	</div>
 </div>

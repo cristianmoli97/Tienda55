@@ -2,7 +2,6 @@ package com.tiendaMinTic;
 
 import java.util.ArrayList;
 
-import javax.validation.Valid;
 
 import com.tiendaMinTicDao.UsuariosDao;
 import com.tiendaMinTicDto.UsuariosVO;
@@ -12,14 +11,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.servlet.ModelAndView;
+
 
 @Controller
 public class UsuariosControlador {
 	  
 	// CRUD Usuarios
 	
-    @GetMapping(value = {"/usuarioscrud"})  
+    @GetMapping(value = {"/crudusuarioform"})  
     public String updateContact(Model model) {
     	UsuariosVO usuario = new UsuariosVO();
         model.addAttribute("usuario",usuario);
@@ -56,7 +55,7 @@ public class UsuariosControlador {
 			  case "Crear":
 
 				  if(userDao.consultarUsuario(usuario.getCedula()).size()>0){  //si el usuario no existe lo crea
-					if(userDao.registrarPersona(usuario)){
+					if(userDao.registrarUsuario(usuario)){
 					  
 						model.addAttribute("popupMsj", "Usuario guardado en base de datos");
 						
