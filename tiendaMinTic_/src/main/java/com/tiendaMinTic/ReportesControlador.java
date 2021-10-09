@@ -163,7 +163,7 @@ public class ReportesControlador {
 					  
 				  }else {
 					  model.addAttribute("popupActive", "visible");
-					  model.addAttribute("popupMsj", "No se encontraron usuarios");
+					  model.addAttribute("popupMsj", "No se encontraron ventas ");
 					  model.addAttribute("tableActive", "hidden");
 				  }
 				  
