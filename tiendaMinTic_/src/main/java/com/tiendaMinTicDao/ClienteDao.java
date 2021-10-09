@@ -49,14 +49,14 @@ public class ClienteDao {
 		
 	}
 	
-	public ArrayList<ClienteVO> buscarCliente(int cedula){
+	public ArrayList<ClienteVO> buscarCliente(long cedula){
 		 ArrayList<ClienteVO> listaCliente = new  ArrayList<ClienteVO>();
 	 Conexion conex = new Conexion();
 		 
 		 try {
 				String query="SELECT cedula_cliente,direccion_cliente,email_cliente, nombre_cliente, telefono_cliente FROM clientes where cedula_cliente=? ";
 				PreparedStatement consulta= conex.getConnection().prepareStatement(query);
-				consulta.setInt(1, cedula);	
+				consulta.setLong(1, cedula);	
 				ResultSet res= consulta.executeQuery();
 				
 				while(res.next()) {
@@ -94,7 +94,7 @@ public class ClienteDao {
 		try {
 			String query="insert into clientes (cedula_cliente,direccion_cliente,email_cliente, nombre_cliente, telefono_cliente) values =(?,?,?,?,?) ";
 			PreparedStatement consulta= conex.getConnection().prepareStatement(query);
-			consulta.setInt(1, cliente.getCedulaCliente());
+			consulta.setLong(1, cliente.getCedulaCliente());
 			consulta.setString(2, cliente.getDireccion());
 			consulta.setString(3,cliente.getCorreoElectronico());
 			consulta.setString(4,cliente.getNombreCompleto());
@@ -115,7 +115,7 @@ public class ClienteDao {
 		try {
 			String query =" delete from clientes where cedula_cliente=? ";
 			PreparedStatement consulta= conex.getConnection().prepareStatement(query);
-			consulta.setInt(1, cliente.getCedulaCliente());
+			consulta.setLong(1, cliente.getCedulaCliente());
 			consulta.executeUpdate();
 			consulta.close();
 			conex.desconectar();
@@ -137,7 +137,7 @@ public class ClienteDao {
 			consulta.setString(2, cliente.getDireccion());
 			consulta.setString(3, cliente.getTelefono());
 			consulta.setString(4, cliente.getCorreoElectronico());
-			consulta.setInt(5, cliente.getCedulaCliente());
+			consulta.setLong(5, cliente.getCedulaCliente());
 			consulta.executeUpdate();
 			consulta.close();
 			conex.desconectar();
