@@ -1,3 +1,5 @@
+package com.tiendaMinTic;
+
 
 import com.tiendaMinTicDao.ProveedoresDAO;
 import com.tiendaMinTicDto.ProveedoresVO;
