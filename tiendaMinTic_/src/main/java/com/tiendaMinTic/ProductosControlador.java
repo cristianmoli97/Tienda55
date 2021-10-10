@@ -26,15 +26,6 @@ import org.springframework.web.servlet.ModelAndView;
 public class ProductosControlador {
 
 	    	
-	// Interfaz cargar archivo csv
-		@GetMapping(value = {"/producto"})
-		public ModelAndView prodcsv(){
-
-		ModelAndView mav = new ModelAndView("productos");
-	
-		return mav; }
- 
-	
 		 // CRUD Productos
 	    @GetMapping(value = {"/prodcrud"})  
 	    public String modProductos(Model model) {
