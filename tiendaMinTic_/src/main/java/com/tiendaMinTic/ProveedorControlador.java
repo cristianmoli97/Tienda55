@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ModelAttribute;
+
+import java.util.ArrayList;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
@@ -19,6 +22,7 @@ public class ProveedorControlador {
 	public String updateContact2(Model model) {
 		ProveedoresVO proveedor = new ProveedoresVO();
 		model.addAttribute("proveedor",proveedor);
+		model.addAttribute("tableActive", "hidden");
 		model.addAttribute("popupActive", "hidden");
 		model.addAttribute("popupMsj", "");
 		return "proveedoresForm";
@@ -31,9 +35,24 @@ public String registrarProveedor(@ModelAttribute("proveedor") ProveedoresVO prov
 	ProveedoresDAO provDao=new ProveedoresDAO();
 	
 	String redireccion = "proveedoresForm";
-	
+	model.addAttribute("tableActive", "hidden");
 	switch(botonCrudProveedor) {
 		case "Consultar":
+			ArrayList<ProveedoresVO> listaProveedores = new ArrayList<>();
+			listaProveedores = provDao.buscarProveedor(proveedor.getNitProveedor());
+			
+			if (listaProveedores != null) {
+				model.addAttribute("popupActive", "hidden");
+				model.addAttribute("tableActive", "visible");
+				model.addAttribute("listaproveedores",listaProveedores);
+			}
+			
+			else {
+				model.addAttribute("popupActive", "visible");
+				model.addAttribute("popupMsj", "Proveedor inexistente");
+				model.addAttribute("tableActive", "hidden");
+			}
+			/*
 			if(provDao.buscarProveedor(proveedor.getNitProveedor()) != null) {
 				
 				model.addAttribute("popupMsj", "Proveedor en base de datos");
@@ -41,10 +60,11 @@ public String registrarProveedor(@ModelAttribute("proveedor") ProveedoresVO prov
 			}else {
 				model.addAttribute("popupMsj", "Proveedor inexistente");
 			}
+			*/
 			proveedor.setDefault(); // pone a cero los datos del proveedor
-			model.addAttribute("proveedor",proveedor);
+			/*model.addAttribute("proveedor",proveedor);
 	  
-			model.addAttribute("popupActive", "visible");
+			model.addAttribute("popupActive", "visible");*/
 
 			
 
