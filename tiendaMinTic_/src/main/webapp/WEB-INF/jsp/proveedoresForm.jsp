@@ -28,19 +28,13 @@
 
 <section class="form-register">
   <form:form action="registrarproveedorform" method="POST" modelAttribute="proveedor"> 
-    <h4>Ingrese:</h4>
-    <div>
-    	<label for="nitProveedor">nitProveedor</label>
-    	<form:input class="controls" type="text" path="nitProveedor" name="nitProveedor" id="nitProveedor" placeholder="nit Proveedor"/>
-    	<div class="has-error">
-        	<form:errors path="nitProveedor" class="help-inline"/>
-    	</div>
-    </div>
-    
-    <form:input class="controls" type="text" path="ciudadProveedor" name="ciudadProveedor" id="ciudadProveedor" placeholder="ciudad Proveedor"/>
-    <form:input class="controls" type="text" path="direccionProveedor" name="direccionProveedor" id="direccionProveedor" placeholder="direccion Proveedor"/>
-    <form:input class="controls" type="text" path="nombreProveedor" name="nombreProveedor" id="nombreProveedor" placeholder="nombre Proveedor"/>
-    <form:input class="controls" type="text" path="telefonoProveedor" name="telefonoProveedor" id="telefonoProveedor" placeholder="telefono Proveedor"/>
+    <h4>Ingrese:</h4>   
+    	
+    <form:input type="text" path="nitProveedor" name="nitProveedor" id="nitProveedor" placeholder="nit Proveedor"/>
+    <form:input type="text" path="ciudadProveedor" name="ciudadProveedor" id="ciudadProveedor" placeholder="ciudad Proveedor"/>
+    <form:input type="text" path="direccionProveedor" name="direccionProveedor" id="direccionProveedor" placeholder="direccion Proveedor"/>
+    <form:input type="text" path="nombreProveedor" name="nombreProveedor" id="nombreProveedor" placeholder="nombre Proveedor"/>
+    <form:input type="text" path="telefonoProveedor" name="telefonoProveedor" id="telefonoProveedor" placeholder="telefono Proveedor"/>
 
     <div class=botones>
     	<input class="botons" type="submit" id="consultar" name="evento_boton_crud_proveedor" value="Consultar">
