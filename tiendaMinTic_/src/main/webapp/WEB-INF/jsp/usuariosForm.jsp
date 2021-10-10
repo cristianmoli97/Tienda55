@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -68,7 +69,7 @@
             </c:forEach> 
         </tbody>
     </table>
-    
+  </div>
     <div class=botonaceptar>
     	<input class="botonsaceptar" type="submit" id="btn_aceptar" name="evento_boton_crud_usuario" style="visibility:hidden" />
     	
