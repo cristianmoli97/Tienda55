@@ -52,30 +52,18 @@ public String registrarProveedor(@ModelAttribute("proveedor") ProveedoresVO prov
 				model.addAttribute("popupMsj", "Proveedor inexistente");
 				model.addAttribute("tableActive", "hidden");
 			}
-			/*
-			if(provDao.buscarProveedor(proveedor.getNitProveedor()) != null) {
-				
-				model.addAttribute("popupMsj", "Proveedor en base de datos");
-				
-			}else {
-				model.addAttribute("popupMsj", "Proveedor inexistente");
-			}
-			*/
-			proveedor.setDefault(); // pone a cero los datos del proveedor
-			/*model.addAttribute("proveedor",proveedor);
-	  
-			model.addAttribute("popupActive", "visible");*/
-
 			
+			proveedor.setDefault(); // pone a cero los datos del proveedor
+					
 
 			break;
 		case "Crear":
 			if(provDao.registarProveedor(proveedor)) {
 				
-				model.addAttribute("popupMsj", "Proveedor guardado enbase de datos");
+				model.addAttribute("popupMsj", "Proveedor guardado en base de datos");
 				
 			}else {
-				model.addAttribute("popupMsj", "Proveedor ya registrado o no creado intente nuevamente");
+				model.addAttribute("popupMsj", "Proveedor ya registrado o no creado, intente nuevamente");
 			}
 			proveedor.setDefault(); // pone a cero los datos del proveedor
 			model.addAttribute("proveedor",proveedor);
@@ -91,7 +79,7 @@ public String registrarProveedor(@ModelAttribute("proveedor") ProveedoresVO prov
 				  model.addAttribute("popupMsj", "Proveedor actualizado en base de datos");
 				
 			}else {
-				model.addAttribute("popupMsj", "Proveedor no actualizado o inexistente intente nuevamente");
+				model.addAttribute("popupMsj", "Proveedor no actualizado o inexistente, intente nuevamente");
 			}
 			proveedor.setDefault(); // pone a cero los datos del proveedor
 			model.addAttribute("proveedor",proveedor);
@@ -103,7 +91,7 @@ public String registrarProveedor(@ModelAttribute("proveedor") ProveedoresVO prov
 		case "Borrar":
 			
 			  if(provDao.eliminarProveedor(proveedor.getNitProveedor())) {
-				  model.addAttribute("popupMsj", "Proveedor eliminado de enbase de datos");
+				  model.addAttribute("popupMsj", "Proveedor eliminado de la base de datos");
 				
 			}else {
 				model.addAttribute("popupMsj", "Proveedor no eliminado o inexistente");
