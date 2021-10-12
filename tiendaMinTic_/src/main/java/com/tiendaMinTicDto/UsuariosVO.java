@@ -19,7 +19,7 @@ public class UsuariosVO {
 	@Column(name = "nombre_usuario")
 	private String nombreUsuario;
 	
-	@Column(name = "correo_usuario")
+	@Column(name = "email_usuario")
 	private String correoUsuario;
 	
 	
