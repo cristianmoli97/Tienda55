@@ -7,16 +7,17 @@ $(document).ready(function(){
 var usuariosForm = document.querySelector('#usuariosForm');
 const botones = document.querySelectorAll(".botons");
 
-var inputCedula = document.querySelector('#cedula');
+var inputCedula = document.querySelector('#Cedula');
 var inputUsuario = document.querySelector('#usuario');
-var inputPasswordUsuario = document.querySelector('#passaword');
+var inputPasswordUsuario = document.querySelector('#passwordUsuario');
 var inputNombreUsuario = document.querySelector('#nombreUsuario');
-var inputEmailUsuario = document.querySelector('#emailUsuario');
+var inputEmailUsuario = document.querySelector('#correoUsuario');
 var tablevisibility = document.querySelector('#tabla');
 
 
 // Definir función y evitar definirla de manera anónima
 const cuandoSeHaceClick = function (evento) {
+	
 	globalThis.btn_aceptar = document.querySelector('#btn_aceptar');
 	inputCedula.style.visibility = "hidden";
 	inputCedula.value = "0";
@@ -32,7 +33,7 @@ const cuandoSeHaceClick = function (evento) {
 	
 	btn_aceptar.style.visibility = "hidden";
 	btn_aceptar.value = "";
-
+   
 	// Asign etiqueta y valor al boton aceptar segun operacion realizada
 	switch(this.id){
 		
@@ -55,6 +56,7 @@ const cuandoSeHaceClick = function (evento) {
               
 
 		case "btn_actualizar":
+		    
 		    inputCedula.style.visibility = "visible";
 			inputCedula.value = "";
 			inputUsuario.style.visibility = "visible";
@@ -83,6 +85,7 @@ const cuandoSeHaceClick = function (evento) {
 // botones es un arreglo así que lo recorremos
 botones.forEach(boton => {
 	//Agregar listener
+	
 	boton.addEventListener("click", cuandoSeHaceClick);
 });
 
