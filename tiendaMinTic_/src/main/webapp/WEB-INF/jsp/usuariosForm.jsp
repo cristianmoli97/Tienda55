@@ -44,7 +44,7 @@
     <form:input class="controls" type="text" path="usuario" name="usuario" id="usuario" pattern="[a-z,A-Z,0-9]{1,15}" placeholder="usuario"/>
     <form:input class="controls" type="text" path="passwordUsuario" name="passwordUsuario" id="passwordUsuario" pattern="[a-z,A-Z,0-9]{1,15}" placeholder="passwordUsuario"/>
     <form:input class="controls" type="text" path="nombreUsuario" name="nombreUsuario" id="nombreUsuario" pattern="[a-z,A-Z,0-9]{1,15}" placeholder="nombreUsuario"/>
-    <form:input class="controls" type="text" path="correoUsuario" name="correoUsuario" id="correoUsuario" pattern="[a-z,A-Z,0-9]{1,15}" placeholder="correoUsuario"/>
+    <form:input class="controls" type="text" path="correoUsuario" name="correoUsuario" id="correoUsuario" pattern="[a-z,A-Z,0-9]{1,15}{@,.}" placeholder="correoUsuario"/>
     <div id="tabla" style="position: absolute; left: 25%; top: 35%; visibility: ${tableActive};">
   <table border="1" class="styled-table">
     
