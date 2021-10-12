@@ -1,9 +1,9 @@
 package com.tiendaMinTic;
 
-
-
 import com.tiendaMinTicDao.UsuariosDao;
 import com.tiendaMinTicDto.UsuariosVO;
+
+import java.util.ArrayList;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,7 +17,7 @@ public class UsuariosControlador {
 	  
 	// CRUD Usuarios
 	
-    @GetMapping(value = {"/crudusuarioform"})  
+    @GetMapping(value = {"/usuarioscrud"})  
     public String updateContact(Model model) {
     	UsuariosVO usuario = new UsuariosVO();
         model.addAttribute("usuario",usuario);
@@ -31,38 +31,42 @@ public class UsuariosControlador {
 	  @PostMapping("/registrarusuarioform")
 	  public String registrarusuario(  @ModelAttribute("usuario") UsuariosVO usuario, @ModelAttribute("evento_boton_crud_usuario") String botonCrudUsuario , Model model) {
          
-		  UsuariosDao userDao=new UsuariosDao();
+		  UsuariosDao userDao =new UsuariosDao();
 		  
 		  String redireccion = "usuariosForm";
 		  
-		  
+		
 		  switch(botonCrudUsuario) {
 			  case "Consultar":
-				  if(userDao.consultarUsuario (usuario.getCedula()) != null) {
+				  ArrayList<UsuariosVO> listaUsu =new ArrayList<>();
+				  listaUsu = userDao.consultarUsuario(usuario);
+				  
+				  if(userDao.consultarUsuario(usuario) != null) {
 					  
-					  model.addAttribute("popupMsj", "Usuario en base de datos");
+					  model.addAttribute("popupMsj", "");
+					  model.addAttribute("popupActive", "hidden");
+					  model.addAttribute("tableActive", "visible");
+					  model.addAttribute("listausuario",listaUsu);
 					  
 				  }else {
 					  model.addAttribute("popupMsj", "Usuario inexistente");
+					  model.addAttribute("popupActive", "visible");
+					  model.addAttribute("tableActive", "hidden");
 				  }
 				  usuario.setDefault(); // pone a cero los datos del usuario
-				  model.addAttribute("usuario",usuario);
 			
-				  model.addAttribute("popupActive", "visible");
 				  break;
 				  
 			  case "Crear":
-
-				  if(userDao.consultarUsuario(usuario.getCedula()).size()>0){  //si el usuario no existe lo crea
-					if(userDao.registrarUsuario(usuario)){
+			
+				if(userDao.registrarUsuario(usuario)) {
 					  
 						model.addAttribute("popupMsj", "Usuario guardado en base de datos");
 						
 					}else {
 						model.addAttribute("popupMsj", "Usuario ya registrado o no creado intente nuevamente");
 					}
-					model.addAttribute("popupMsj", "Usuario Creado, ya existe");
-				  }
+									  
 				  usuario.setDefault(); // pone a cero los datos del usuario
 				  model.addAttribute("usuario", usuario);
 			
@@ -73,15 +77,16 @@ public class UsuariosControlador {
 				  
 			  case "Actualizar":
 				  
-			    if(userDao.consultarUsuario(usuario.getCedula()).size()>0){
+			    if(userDao.consultarUsuario(usuario)!=null){
 					  if(userDao.modificarUsuarios(usuario)){
 			  		  	model.addAttribute("popupMsj", "Usuario actualizado en base de datos");
 					  
 				  	  }else {
 					  model.addAttribute("popupMsj", "Usuario no actualizado, el numero de cedula es incorrecto");
 				  	 }
-					   model.addAttribute("popupMsj", "Usuario no actualizado, no existe");
-					}
+				}else {
+					model.addAttribute("popupMsj", "Usuario no existe");	
+				}
 				  usuario.setDefault(); // pone a cero los datos del usuario
 				  model.addAttribute("usuario",usuario);
 			
