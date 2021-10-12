@@ -33,16 +33,17 @@ public class UsuariosDao {
 		return listaUsuarios;
 			
 	}
-	public ArrayList<UsuariosVO> consultarUsuario(int id){
+	public ArrayList<UsuariosVO> consultarUsuario(UsuariosVO usuario1){
 		ArrayList<UsuariosVO> listaUsuarios= new ArrayList<> ();
 		Conexion conex=new Conexion();
+		
 		 if (conex != null) {
 	                String query = "";
 	                boolean estatus=false;
 		try {
 			query="Select cedula_usuario,email_usuario,nombre_usuario,password,usuario from usuarios where cedula_usuario=?";
 			PreparedStatement consulta=conex.getConnection().prepareStatement(query);
-			consulta.setInt(1,id);
+			consulta.setInt(1,usuario1.getCedula());
 			ResultSet res=consulta.executeQuery();
 			
 			
@@ -83,19 +84,17 @@ public class UsuariosDao {
 		Conexion conex=new Conexion();
 		if (conex != null && user != null) { 
 		try {
-			String query = "insert into usuarios (cedula_usuario,email_usuario,nombre_usuario,password,usuario)"
-			 + "values (?,?,?,?,?)";
-
+			String query = "INSERT INTO usuarios (`cedula_usuario`,`email_usuario`,`nombre_usuario`,`password`,`usuario`)VALUES (" +user.getCedula()+","
+					  +"'"+user.getCorreoUsuario()+"'"+","
+					  +"'"+user.getNombreUsuario()+"'"+","
+					  +"'"+user.getPasswordUsuario()+"'"+","
+					  +"'"+user.getUsuario()+"'"+")";
 			PreparedStatement consulta = conex.getConnection().prepareStatement(query);
-			consulta.setInt(1, user.getCedula());
-			consulta.setString(2,user.getCorreoUsuario());
-			consulta.setString(3, user.getNombreUsuario());
-			consulta.setString(4, user.getPasswordUsuario());
-			consulta.setString(5, user.getUsuario());
-		
+			
+			consulta.executeUpdate(query);			
 
-			if (this.consultarUsuario(user.getCedula()) == null) {  // si el usuario no esxiste registra usuario
-						consulta.executeUpdate(query);
+			if (this.consultarUsuario(user) != null) {  // si el usuario no esxiste registra usuario
+						
 						estatus =  true;	
 				  }  
 				 
