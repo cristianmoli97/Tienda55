@@ -1,0 +1,136 @@
+*{
+    padding: 0%;
+    margin: 0%;
+    box-sizing: border-box;
+}
+
+html { 
+    background: url(../imagenes/fondo11.jpg) no-repeat center center fixed; 
+    background-size: cover;
+    overflow: hidden;
+}
+
+.boxContainer{
+    display: flex;
+    margin: 30px auto;
+    justify-content: center;
+    width: fit-content;
+    flex-direction: column;  
+}
+.menu{
+    width: 100%;
+}
+
+.menu ul{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    background-color: #e0b73e;
+    border-radius: 8px;
+}
+
+.menu ul li{
+    list-style: none;
+    color: #fff;
+    margin: 0px 5px;
+    cursor: pointer;
+    padding: 20px;
+}
+
+.menu ul li:hover{
+    background-color: #87712f;
+}
+
+.menu ul li:first-of-type{
+    margin-left: 0px;
+}
+
+.menu ul li:last-of-type{
+    margin-right: 0px;
+}
+
+.menu ul li a{
+    color: #fff;
+    text-decoration: none;
+}
+
+.formBox{
+    background-color: #24303c;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    margin-top: 10px;
+}
+
+.formBox form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.flexCliente{
+    display: flex;
+    margin-bottom: 50px;
+    align-items: center;
+}
+
+.textoBalnco{
+    margin: 0px 10px;
+    color: #fff;
+}
+
+.inputPRO{
+    color: #fff;
+    background-color:#24303c;
+    border: #2552ac 1px solid;
+    border-radius: 2px;
+    padding: 8px 10px;
+}
+
+.buttonPRO{
+    background-color: #2552ac;
+    color: #fff;
+    padding: 5px 20px;
+    border: 0px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.buttonPRO:disabled{
+	background-color: #8a8d93;
+	cursor: no-drop;
+}
+
+.mr15px{
+    margin-right: 15px;
+}
+
+.mrT15px{
+    margin-top: 15px;
+}
+
+.addProducto{
+    display: flex;
+    margin: auto;
+    width: 80%;
+    
+}
+
+.addProducto .inputPRO{
+    width: 10%;
+    width: inherit;
+    margin-right: 15px;
+}
+
+table {     font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    font-size: 12px;    margin: 45px;     width: 480px; text-align: left;    border-collapse: collapse; }
+   
+caption{ font-size: 18px; color: #fff; margin-bottom: 8px; font-weight: bold;}
+
+th { border: 0px;    font-size: 13px;     font-weight: normal;     padding: 8px;     background: #b9c9fe;
+    border-top: 4px solid #aabcfe;    border-bottom: 1px solid #fff; color: #039; }
+
+td { border-left: 0px; border-right: 0px;    padding: 8px;     background: #e8edff;     border-bottom: 1px solid #fff;
+    color: #669;    border-top: 1px solid transparent; }
+
+tr:hover td { background: #d0dafd; color: #339; }
