@@ -15,12 +15,13 @@
     <div class="boxContainer">
         <nav class="menu">
             <ul>
-                <li><a href="#">USUARIOS</a></li>
-                <li><a href="#">CLIENTES</a></li>
+                <li><a href="usuarioscrud">USUARIOS</a></li>
+                <li><a href="clienteForm">CLIENTES</a></li>
                 <li><a href="/proveedorescrud">PROVEEDORES</a></li>
                 <li><a href="/producto">PRODUCTOS</a></li>
-                <li><a href=/ventas#">VENTAS</a></li>
+                <li><a href=/ventas">VENTAS</a></li>
                 <li><a href="/reportesall">REPORTES</a></li>
+                <li><a href="/login">LOGOUT</a></li>
             </ul>
         </nav>
         <section class="formBox">

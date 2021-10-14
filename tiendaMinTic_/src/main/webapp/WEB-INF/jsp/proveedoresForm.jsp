@@ -22,7 +22,7 @@
 					  <li><a href="prodcrud">CRUD</a></li>
 				  </ul>
 			  </li>
-			<li><a href="#">Ventas</a></li>
+			<li><a href="/ventas">Ventas</a></li>
 			<li><a href="/reportesall">Reportes</a></li>
 			<li><a href="/login">logout</a></li>
 			
@@ -31,7 +31,7 @@
 
 <section class="form-register">
   <form:form action="registrarproveedorform" method="POST" modelAttribute="proveedor" id="proveForm"> 
-    <h4>Seleccione la operación a realizar:</h4>    
+    <h4>Seleccione la operaciï¿½n a realizar:</h4>    
     <div class=botones>
     	<button class="botons" id="btn_consultar" type="button">Consultar</button>
     	<button class="botons"  id="btn_crear" type="button">Crear</button>

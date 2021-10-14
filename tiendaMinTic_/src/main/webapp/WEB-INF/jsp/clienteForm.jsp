@@ -21,7 +21,7 @@
                       <li><a href="prodcrud">CRUD</a></li>
                   </ul>
               </li>
-            <li><a href="#">Ventas</a></li>
+            <li><a href="/ventas">Ventas</a></li>
             <li><a href="/reportesall">Reportes</a></li>
             <li><a href="/login">logout</a></li>
             
