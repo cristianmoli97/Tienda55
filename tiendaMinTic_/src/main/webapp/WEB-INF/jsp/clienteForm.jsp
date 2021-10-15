@@ -9,7 +9,7 @@
 <title>Clientes Formulario</title>
 <link href="/static/css/style_usu.css" rel="stylesheet" type="text/css">  
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="/static/js/proveedoresform.js"> </script>
+<script src="/static/js/clientesform.js"> </script>
 </head>
 <body>
 	<nav>
