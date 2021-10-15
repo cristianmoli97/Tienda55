@@ -15,7 +15,7 @@
 	<nav>
 		<ul>
 			<li><a href="usuarioscrud">Usuarios</a>
-			<li><a href="clienteForm">Clientes</a></li>
+			<li><a href="clienteclientecrud">Clientes</a></li>
 			<li><a href="proveedorescrud">Proveedores</a></li>
 			<li><a href="producto">Productos</a>
 				<ul>
