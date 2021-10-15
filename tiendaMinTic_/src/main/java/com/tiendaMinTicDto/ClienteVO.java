@@ -42,5 +42,13 @@ public class ClienteVO {
 		this.correoElectronico = correoElectronico;
 	}
 	
+	public void setDefault() {
+		this.cedulaCliente = 0;
+		this.nombreCompleto="";
+		this.direccion="";
+		this.telefono="";
+		this.correoElectronico="";
+		
+	}
 
 }
