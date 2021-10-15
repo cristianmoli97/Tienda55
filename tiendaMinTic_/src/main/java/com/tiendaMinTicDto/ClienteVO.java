@@ -1,7 +1,7 @@
 package com.tiendaMinTicDto;
 
 public class ClienteVO {
-	private int  cedulaCliente;
+	private Long  cedulaCliente;
 	private String nombreCompleto;
 	private String direccion;
 	private String telefono;
@@ -10,10 +10,10 @@ public class ClienteVO {
 	
 	public ClienteVO() {};
 	
-	public int getCedulaCliente() {
+	public Long getCedulaCliente() {
 		return cedulaCliente;
 	}
-	public void setCedulaCliente(int cedulaCliente) {
+	public void setCedulaCliente(Long cedulaCliente) {
 		this.cedulaCliente = cedulaCliente;
 	}
 	
@@ -43,7 +43,7 @@ public class ClienteVO {
 	}
 	
 	public void setDefault() {
-		this.cedulaCliente = 0;
+		this.cedulaCliente = (long) 0;
 		this.nombreCompleto="";
 		this.direccion="";
 		this.telefono="";

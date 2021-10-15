@@ -21,7 +21,7 @@ public class ClienteDao {
 				
 				while(res.next()) {
 					ClienteVO cliente = new ClienteVO();
-					cliente.setCedulaCliente(res.getInt("cedula_cliente"));
+					cliente.setCedulaCliente(res.getLong("cedula_cliente"));
 					cliente.setDireccion(res.getString("direccion_cliente"));
 					cliente.setCorreoElectronico(res.getString("email_cliente"));
 					cliente.setNombreCompleto(res.getString("nombre_cliente"));
@@ -56,7 +56,7 @@ public class ClienteDao {
 				
 				while(res.next()) {
 					ClienteVO cliente = new ClienteVO();
-					cliente.setCedulaCliente(res.getInt("cedula_cliente"));
+					cliente.setCedulaCliente(res.getLong("cedula_cliente"));
 					cliente.setDireccion(res.getString("direccion_cliente"));
 					cliente.setCorreoElectronico(res.getString("email_cliente"));
 					cliente.setNombreCompleto(res.getString("nombre_cliente"));
@@ -96,15 +96,16 @@ public class ClienteDao {
 		Conexion conex= new Conexion();
 
 		try {
-			String query="insert into clientes (cedula_cliente,direccion_cliente,email_cliente, nombre_cliente, telefono_cliente) values =(?,?,?,?,?) ";
+			String query="insert into clientes (cedula_cliente,direccion_cliente,"
+					+ "email_cliente, nombre_cliente, telefono_cliente) values (?,?,?,?,?) ";
 			PreparedStatement consulta= conex.getConnection().prepareStatement(query);
 			consulta.setLong(1, cliente.getCedulaCliente());
 			consulta.setString(2, cliente.getDireccion());
 			consulta.setString(3,cliente.getCorreoElectronico());
 			consulta.setString(4,cliente.getNombreCompleto());
 			consulta.setString(5, cliente.getTelefono());
-			
-			if (this.buscarCliente(cliente.getCedulaCliente()) != null) {  // si el usuario no esxiste registra usuario
+
+			if (this.buscarCliente(cliente.getCedulaCliente()) == null) {  // si el usuario no esxiste registra usuario
 				consulta.executeUpdate();
 				estatus =  true;	
 		  } 
@@ -127,9 +128,9 @@ public class ClienteDao {
 		boolean estatus=false;
 		Conexion conex = new Conexion();
 		try {
-			String query =" delete from clientes where cedula_cliente=? ";
+			String query = "DELETE FROM clientes WHERE cedula_cliente ='"+cliente.getCedulaCliente()+"'";
 			PreparedStatement consulta= conex.getConnection().prepareStatement(query);
-			consulta.setLong(1, cliente.getCedulaCliente());
+
 
 			if(consulta.executeUpdate(query) == 1){
 				estatus=true;
