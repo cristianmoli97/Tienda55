@@ -30,7 +30,7 @@
 	</nav>
 
 <section class="form-register">
-  <form:form action="registrarcliente" method="POST" modelAttribute="cliente" id="clienteForm"> 
+  <form:form action="registrarcliente" method="post" modelAttribute="cliente" id="clienteForm"> 
     <h4>Seleccione la operación a realizar:</h4>    
     <div class=botones>
     	<button class="botons" id="btn_consultar" type="button">Consultar</button>
@@ -40,10 +40,10 @@
     </div> 
     	
     <form:input class="controls" type="text" path="cedulaCliente" name="cedulaCliente" id="cedulaCliente" pattern="[0-9]{1,10}" placeholder="cedula Cliente" required="required"/>
-    <form:input class="controls" type="text" path="nombreCompleto" name="nombreCompleto" id="nombreCompleto" placeholder="nombre completo"/>
+    <form:input class="controls" type="text" path="nombreCompleto" name="nombreCompleto" id="nombreCompleto" pattern="[a-z,A-Z,0-9]{1,25}" placeholder="nombre completo"/>
     <form:input class="controls" type="text" path="direccion" name="direccion" id="direccion" placeholder="direccion cliente"/>
-    <form:input class="controls" type="text" path="telefono" name="telefono" id="telefono" placeholder="telefono "/>
-    <form:input class="controls" type="text" path="correoElectronico" name="correoElectronico" id="correoElectronico"  placeholder="correo electronico"/>
+    <form:input class="controls" type="text" path="telefono" name="telefono" id="telefono" pattern="[0-9]{1,10}" placeholder="telefono "/>
+    <form:input class="controls" type="text" path="correoElectronico" name="correoElectronico" id="correoElectronico"  pattern="[a-z,A-Z,0-9]{1,15}{@,.}" placeholder="correo electronico"/>
 
     
     <div id="tabla" style="position: absolute; left: 25%; top: 35%; visibility: ${tableActive};">
