@@ -39,19 +39,14 @@ public class ClienteDao {
 				 JOptionPane.showMessageDialog(null, e);
 			}
 			return listaCliente;
-			
-		
-		
-		 
-		
-		
-		
+				
 		
 	}
 	
 	public ArrayList<ClienteVO> buscarCliente(long cedula){
 		 ArrayList<ClienteVO> listaCliente = new  ArrayList<ClienteVO>();
-	 Conexion conex = new Conexion();
+	 	 Conexion conex = new Conexion();
+	 	 boolean estatus = false;
 		 
 		 try {
 				String query="SELECT cedula_cliente,direccion_cliente,email_cliente, nombre_cliente, telefono_cliente FROM clientes where cedula_cliente=? ";
@@ -60,15 +55,21 @@ public class ClienteDao {
 				ResultSet res= consulta.executeQuery();
 				
 				while(res.next()) {
-					ClienteVO clientes = new ClienteVO();
-					clientes.setCedulaCliente(res.getInt("cedula_cliente"));
-					clientes.setDireccion(res.getString("direccion_cliente"));
-					clientes.setCorreoElectronico(res.getString("email_cliente"));
-					clientes.setNombreCompleto(res.getString("nombre_cliente"));
-					clientes.setTelefono(res.getString("telefono_cliente"));
-					listaCliente.add(clientes);
+					ClienteVO cliente = new ClienteVO();
+					cliente.setCedulaCliente(res.getInt("cedula_cliente"));
+					cliente.setDireccion(res.getString("direccion_cliente"));
+					cliente.setCorreoElectronico(res.getString("email_cliente"));
+					cliente.setNombreCompleto(res.getString("nombre_cliente"));
+					cliente.setTelefono(res.getString("telefono_cliente"));
+					listaCliente.add(cliente);
 					}
 				res.close();
+
+				if(listaCliente.size()>0){
+					estatus=true;
+	
+				 }
+
 				consulta.close();
 				conex.desconectar();
 			}
@@ -77,20 +78,23 @@ public class ClienteDao {
 			 catch (Exception e) {
 				// TODO: handle exception
 				 JOptionPane.showMessageDialog(null, e);
-			}
+			}finally{
+				if (!estatus) {
+					listaCliente =  null;
+			    }
+		    }
+	        conex.desconectar();
 			return listaCliente;
-			
+
+	     }
 		
-		
-		}
 	
 	
 	
-	
-	
-	
-	public void registrarCliente(ClienteVO cliente) {
+	public boolean registrarCliente(ClienteVO cliente) {
+		boolean estatus = false;
 		Conexion conex= new Conexion();
+
 		try {
 			String query="insert into clientes (cedula_cliente,direccion_cliente,email_cliente, nombre_cliente, telefono_cliente) values =(?,?,?,?,?) ";
 			PreparedStatement consulta= conex.getConnection().prepareStatement(query);
@@ -99,36 +103,50 @@ public class ClienteDao {
 			consulta.setString(3,cliente.getCorreoElectronico());
 			consulta.setString(4,cliente.getNombreCompleto());
 			consulta.setString(5, cliente.getTelefono());
-			consulta.executeUpdate();
+			
+			if (this.buscarCliente(cliente.getCedulaCliente()) != null) {  // si el usuario no esxiste registra usuario
+				consulta.executeUpdate();
+				estatus =  true;	
+		  } 
+
+								  
 			consulta.close();
-			conex.desconectar();
 			
 			
 		} catch (Exception e) {
-			// TODO: handle exception
+			System.out.println(e.getMessage());
+			estatus = false;
 		}
+
+		conex.desconectar();
+		 return estatus;
 	}
 	
 	
-	public void borrarCliente (ClienteVO cliente ) {
+	public boolean borrarCliente (ClienteVO cliente ) {
+		boolean estatus=false;
 		Conexion conex = new Conexion();
 		try {
 			String query =" delete from clientes where cedula_cliente=? ";
 			PreparedStatement consulta= conex.getConnection().prepareStatement(query);
 			consulta.setLong(1, cliente.getCedulaCliente());
-			consulta.executeUpdate();
+
+			if(consulta.executeUpdate(query) == 1){
+				estatus=true;
+			}
 			consulta.close();
-			conex.desconectar();
-			
-			
+		
 			
 		} catch (Exception e) {
-			// TODO: handle exception
+			System.out.println(e);
 		}
+		conex.desconectar();
+		return estatus;
 	}
 
 	
-	public void actualizarCliente(ClienteVO cliente) {
+	public boolean actualizarCliente(ClienteVO cliente) {
+		boolean estatus=false;
 		Conexion conex = new Conexion();
 		try {
 			String query=" update clientes  set  nombre_cliente=?,direccion_cliente=?, telefono_cliente=?,email_cliente=? where cedula_cliente=?  ";
@@ -138,14 +156,20 @@ public class ClienteDao {
 			consulta.setString(3, cliente.getTelefono());
 			consulta.setString(4, cliente.getCorreoElectronico());
 			consulta.setLong(5, cliente.getCedulaCliente());
-			consulta.executeUpdate();
+			if( 1 == consulta.executeUpdate()){
+				estatus=true;
+		   
+		   }
+		
 			consulta.close();
-			conex.desconectar();
+
 			
 		} catch (Exception e) {
-			// TODO: handle exception
+			System.out.println(e);
 		}
 		
+		conex.desconectar();
+		return estatus;
 	}
 	
 }
