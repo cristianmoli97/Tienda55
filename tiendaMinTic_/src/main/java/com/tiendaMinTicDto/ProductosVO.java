@@ -7,6 +7,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * 
+ * @author ledyn roman moreno castellanso
+ *
+ */
+
 @Entity
 @Table(name = "productos")
 public class ProductosVO {

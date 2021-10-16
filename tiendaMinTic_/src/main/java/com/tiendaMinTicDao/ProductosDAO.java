@@ -7,6 +7,11 @@ import java.util.ArrayList;
 
 import com.tiendaMinTicDto.ProductosVO;
 
+/**
+ * 
+ * @author ledyn roman moreno castellanso
+ *
+ */
 public class ProductosDAO {
 	
 public ArrayList<ProductosVO> listarProductos(){
