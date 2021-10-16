@@ -91,7 +91,7 @@ public class ProductosControlador {
 					  
 				  case "Actualizar":
 					
-					  if(provDao.buscarProveedor(producto.getNitProveedor()).size() > 0){  // si existe el proveedor procede a actualizar
+					  if(provDao.buscarProveedor(producto.getNitProveedor()) != null){  // si existe el proveedor procede a actualizar
 						  if(prodDao.actualizarProducto(producto)) {
 							  model.addAttribute("popupMsj", "Producto actualizado en base de datos");
 						  
