@@ -22,6 +22,7 @@ html {
 }
 
 .menu ul{
+	list-style:none;
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -35,12 +36,16 @@ html {
     margin: 0px 5px;
     cursor: pointer;
     padding: 20px;
+    position:relative;
+    float:left;
 }
 
-.menu ul li:hover{
-    background-color: #87712f;
-}
 
+
+
+.menu ul li:hover {
+  background:#e67e22;
+}
 .menu ul li:first-of-type{
     margin-left: 0px;
 }
@@ -53,6 +58,32 @@ html {
     color: #fff;
     text-decoration: none;
 }
+
+.menu ul li:hover > ul {
+  display:block;
+}
+
+.menu  ul ul a {
+  line-height:120%;
+  padding:10px 15px;
+}
+
+.menu  ul ul li {
+  float:none;
+  border-radius: 8px;
+}
+
+.menu ul ul {
+  display:none;
+  position:absolute;
+  top:100%;
+  left:0;
+  padding:0;
+}
+
+
+
+
 
 .formBox{
     background-color: #24303c;
