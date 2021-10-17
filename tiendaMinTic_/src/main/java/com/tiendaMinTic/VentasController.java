@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 import com.tiendaMinTicDao.ClienteDao;
 import com.tiendaMinTicDao.DetallesDAO;
 import com.tiendaMinTicDao.ProductosDAO;
@@ -26,11 +27,11 @@ import com.tiendaMinTic.CSV.Servicios.ServicioAutenticar;
 
 @Controller
 public class VentasController {
-	private String userloginInUse =  TiendaMinTicApplication.GlobalUserName.getUserLoginx(); //accede al ususario ingresado en login
+	
 	
 	@GetMapping(value="/ventas")		
     public String paginadefault(){
-		
+		String userloginInUse = TiendaMinTicApplication.usernameLoginx;//accede al ususario ingresado en login
 		if(userloginInUse.equals("nada")) {
 
 			return "redirect:login";
@@ -54,6 +55,7 @@ public class VentasController {
 	
 	@PostMapping(value="/ventasSearch")
     public String AccederReportes(@ModelAttribute("evento_boton_ventas") String butonVentas, @RequestParam(name = "docCliente") String txtDocumentoCliente, @RequestParam(name = "idProducto") String txtIdProducto, @RequestParam(name = "idCantidad") String txtIdCnatidad, @RequestParam(name = "idTotalP") String txtValorTUnidadP, Model model){
+		String userloginInUse = TiendaMinTicApplication.usernameLoginx;//accede al ususario ingresado en login
 		String redireccion = "ventas";
 			
 		if(txtDocumentoCliente != "") documentoCliente = Long.parseLong(txtDocumentoCliente);

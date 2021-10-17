@@ -10,6 +10,8 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 @ComponentScan({"com.tiendaMinTic","com.tiendaMinTicDao"})
 @EntityScan("com.tiendaMinTicDto")
 public class TiendaMinTicApplication {
+    
+	public static String usernameLoginx = "nada";
 
 	public static class GlobalUserName{
 	    public static String userLoginx = "nada";
@@ -21,6 +23,7 @@ public class TiendaMinTicApplication {
 
 	    public static void setUserLoginx(String userloginx){
 	    	GlobalUserName.userLoginx = userloginx;
+			TiendaMinTicApplication.usernameLoginx = userloginx;
 
 	    }
 	}

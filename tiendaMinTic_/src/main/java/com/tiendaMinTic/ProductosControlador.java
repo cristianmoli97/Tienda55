@@ -26,26 +26,26 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class ProductosControlador {
 
 	    	
-	private String userloginInUse =  TiendaMinTicApplication.GlobalUserName.getUserLoginx(); //accede al ususario ingresado en login
+		 // CRUD Productos
+	    @GetMapping(value = {"/prodcrud"})  
+	    public String modProductos(Model model) {
+	    	String userloginInUse = TiendaMinTicApplication.usernameLoginx; //accede al ususario ingresado en login
+	    	if(userloginInUse.equals("nada")) {
+
+				return "redirect:login";
+			}else {
+
+				ProductosVO producto = new ProductosVO();
+		        model.addAttribute("producto",producto);
+		        model.addAttribute("tableActive", "hidden");
+		        model.addAttribute("popupActive", "hidden");
+		        model.addAttribute("popupMsj", "");
+		        return "productosForm";
+			}
 	    	
-	// CRUD Productos
-   @GetMapping(value = {"/prodcrud"})  
-   public String modProductos(Model model) {
-	   
-	   if(userloginInUse.equals("nada")) {
-
-		   return "redirect:login";
-	   }else {
-
-		   ProductosVO producto = new ProductosVO();
-		   model.addAttribute("producto",producto);
-		   model.addAttribute("tableActive", "hidden");
-		   model.addAttribute("popupActive", "hidden");
-		   model.addAttribute("popupMsj", "");
-		   return "productosForm";
-	   }
-	      
-	}
+	    	
+	    	
+	 }
 	    
 	      //Al hacer click sobre alguno de los botones
 		  @PostMapping("/crudproductoform")
