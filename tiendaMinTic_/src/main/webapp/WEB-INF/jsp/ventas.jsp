@@ -39,7 +39,7 @@
                     <p class="textoBalnco"><c:out value="${txtCodigoVenta}"/></p>
                 </div>
                 <div class="addProducto">
-                    <input type="text" class="inputPRO" name="idProducto" placeholder="Cod Producto" onkeyup="validarProducto(this)">
+                    <input type="text" class="inputPRO" name="idProducto" placeholder="Cod Producto" ${inputProdED} onkeyup="validarProducto(this)">
                     <input class="buttonPRO mr15px" type="submit" id="btnSearchProducto" value = "Consultar" name="evento_boton_ventas" disabled/>
                     <input type="text" class="inputPRO" id="idTxtNameP" value="${txtNameP}" disabled placeholder="Nombre producto">
                     <input type="number" class="inputPRO" name="idCantidad" value="${txtCantidadP}" placeholder="Cant" onkeyup="valorCantidadProdcuto(this)" onchange="valorCantidadProdcuto(this)"/>

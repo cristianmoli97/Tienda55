@@ -38,6 +38,7 @@ public class VentasController {
 		}else {
 			model.addAttribute("popupActive", "hidden");
 			model.addAttribute("popupMsj", "");
+			model.addAttribute("inputProdED","readonly");
 		    return "ventas";
 		}
     }
@@ -48,7 +49,7 @@ public class VentasController {
 	Double totalN = 0.0;
 	double totalIva = 0.0;
 	double totalPro = 0.0;
-	long documentoCliente;
+	long documentoCliente = 0L;
 	ArrayList<ProductosVO> listaProducto1 = new ArrayList<>();
 	
 
@@ -62,7 +63,7 @@ public class VentasController {
 		model.addAttribute("popupMsj", "");
 			
 		if(txtDocumentoCliente != "") documentoCliente = Long.parseLong(txtDocumentoCliente);
-		else documentoCliente = 0;	
+		else documentoCliente = 0L;	
 		
 		VentasDAO ventasdao = new VentasDAO();
 		VentasVO ventasveo = new VentasVO();
@@ -94,13 +95,14 @@ public class VentasController {
 				ClienteDao objClienteDao = new ClienteDao();
 				txtName = "digite la cedula del cliente";
 				listaCli = objClienteDao.buscarCliente(documentoCliente);
-				if(listaCli.size() != 0) {
+				if(listaCli != null) {
 					objCliente.setCedulaCliente(listaCli.get(0).getCedulaCliente());
 					objCliente.setCorreoElectronico(listaCli.get(0).getCorreoElectronico());
 					objCliente.setDireccion(listaCli.get(0).getDireccion());
 					objCliente.setNombreCompleto(listaCli.get(0).getNombreCompleto());
 					objCliente.setTelefono(listaCli.get(0).getTelefono());
-					txtName =  listaCli.get(0).getNombreCompleto();					
+					txtName =  listaCli.get(0).getNombreCompleto();	
+					model.addAttribute("inputProdED"," ");
 				}
 				model.addAttribute("txtName", txtName);
 				model.addAttribute("txtDoc", documentoCliente);
@@ -108,6 +110,7 @@ public class VentasController {
 				model.addAttribute("totalN", 0);
 				model.addAttribute("totalIva", 0);
 				model.addAttribute("totalPro", 0);
+				
 				if (listAllP.size()>0) {
 					listAllP.clear();
 				}
