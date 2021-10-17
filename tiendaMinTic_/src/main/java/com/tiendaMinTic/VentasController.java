@@ -1,13 +1,14 @@
 package com.tiendaMinTic;
 
 import java.util.ArrayList;
+
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 import com.tiendaMinTicDao.ClienteDao;
 import com.tiendaMinTicDao.DetallesDAO;
 import com.tiendaMinTicDao.ProductosDAO;
@@ -16,17 +17,27 @@ import com.tiendaMinTicDto.CarritoVenta;
 import com.tiendaMinTicDto.ClienteVO;
 import com.tiendaMinTicDto.DetalleVO;
 import com.tiendaMinTicDto.ProductosVO;
+import com.tiendaMinTicDto.UsuariosVO;
 import com.tiendaMinTicDto.VentasVO;
 
+
+import com.tiendaMinTic.CSV.Servicios.ServicioAutenticar;
 
 
 @Controller
 public class VentasController {
-
+	private String userloginInUse =  TiendaMinTicApplication.GlobalUserName.getUserLoginx(); //accede al ususario ingresado en login
+	
 	@GetMapping(value="/ventas")		
-    public ModelAndView paginadefault(){
-		ModelAndView mav = new ModelAndView("ventas");
-		return mav;
+    public String paginadefault(){
+		
+		if(userloginInUse.equals("nada")) {
+
+			return "redirect:login";
+		}else {
+
+		    return "ventas";
+		}
     }
 	
 	ClienteVO objCliente = new ClienteVO();
@@ -37,6 +48,9 @@ public class VentasController {
 	double totalPro = 0.0;
 	long documentoCliente;
 	ArrayList<ProductosVO> listaProducto1 = new ArrayList<>();
+	
+
+
 	
 	@PostMapping(value="/ventasSearch")
     public String AccederReportes(@ModelAttribute("evento_boton_ventas") String butonVentas, @RequestParam(name = "docCliente") String txtDocumentoCliente, @RequestParam(name = "idProducto") String txtIdProducto, @RequestParam(name = "idCantidad") String txtIdCnatidad, @RequestParam(name = "idTotalP") String txtValorTUnidadP, Model model){
@@ -50,8 +64,23 @@ public class VentasController {
 		DetalleVO detallesVOO = new DetalleVO();
 		DetallesDAO detallesDAOO = new DetallesDAO();
 		ProductosDAO productosDAOO = new ProductosDAO();
-		ProductosVO productosVOO = new ProductosVO();
-		
+		ServicioAutenticar userAutenticar2 = new ServicioAutenticar();
+        int docuUsuarioLogin = 0;
+        
+
+        ArrayList<UsuariosVO> listausu =new ArrayList<>();
+
+        listausu = userAutenticar2.consultarUsername(userloginInUse);
+
+       
+        for(UsuariosVO usuVoLogin: listausu) {
+
+        	if(userloginInUse.equals(usuVoLogin.getUsuario())) {
+        		docuUsuarioLogin = usuVoLogin.getCedula();
+        		break;
+        		
+        	}
+        }
 	
 		switch(butonVentas) {
 		case "consultar cliente":
@@ -144,43 +173,49 @@ public class VentasController {
 			
 		case "addVenta":
 			
-			ventasveo.setCodigoVentas(0);
-			ventasveo.setCedulaCliente(documentoCliente);
-			ventasveo.setCedulaUsuario(2);
-			ventasveo.setValorVenta(totalN);
-			ventasveo.setIvaVenta(totalIva);
-			ventasveo.setTotalVenta(totalPro);
-			
-			ventasdao.registrarVenta(ventasveo);
-			
-			for (CarritoVenta carrito: listAllP){
-				
-				detallesVOO.setCodigo_detalle_venta(0);
-				detallesVOO.setCantidad_producto(carrito.getCantidad_producto());
-				detallesVOO.setCodigo_producto(carrito.getCodigo_producto());
-				detallesVOO.setCodigo_venta(ventasveo.getCodigoVentas());
-				detallesVOO.setValor_total(carrito.getValor_total());
-				ArrayList<ProductosVO> listaProductoX =new ArrayList<>();
-				listaProductoX = productosDAOO.buscarProducto(carrito.getCodigo_producto());
-				Double productosX = 0.0;
-
-				if (listaProductoX != null) {
-					
-					for(ProductosVO productosVOX: listaProductoX) {
-						productosX = productosVOX.getIvaCompra();	
+			// determinando indice del ultimo codigo de venta asignado en DB
+			  Long ultimoIdCodigoVenta = ventasdao.consultarUltimocodigoVenta();
+					  
+			  ventasveo.setCodigoVentas(ultimoIdCodigoVenta+1); // Se incrementa en 1 para registrar el siguiente codigo venta
+			  ventasveo.setCedulaCliente(documentoCliente);
+			  ventasveo.setCedulaUsuario(docuUsuarioLogin);
+			  ventasveo.setValorVenta(totalN);
+			  ventasveo.setIvaVenta(totalIva);
+			  ventasveo.setTotalVenta(totalPro);
+			  
+			  ventasdao.registrarVenta(ventasveo);
+			  
+			  
+			  
+			  for (CarritoVenta carrito: listAllP){
+			  
+				  detallesVOO.setCodigo_detalle_venta(0); // dato sin importancia, llenado autoincremental  en DB 
+				  detallesVOO.setCantidad_producto(carrito.getCantidad_producto());
+				  detallesVOO.setCodigo_producto(carrito.getCodigo_producto());
+				  detallesVOO.setCodigo_venta(ventasveo.getCodigoVentas());
+				  detallesVOO.setValor_total(carrito.getValor_total());
+			  
+				  ArrayList<ProductosVO> listaProductoX =new ArrayList<>();
+				  listaProductoX =  productosDAOO.buscarProducto(carrito.getCodigo_producto());
+				  Double productosX = 0.0;
+			  
+				  if (listaProductoX != null) {
+						
+						for(ProductosVO productosVOX: listaProductoX) {
+							productosX = productosVOX.getIvaCompra();	
+						}
 					}
-				}
-									
-				Double valorIvaProducto = carrito.getValor_total() * productosX;
-				detallesVOO.setValoriva(valorIvaProducto);
-				Double valorVentaProducto = carrito.getValor_total() + valorIvaProducto;
-				detallesVOO.setValor_venta(valorVentaProducto);
-				// Double valorTotalProducto = carrito.getValor_total() * (carrito.getCantidad_producto());
-		
-				detallesDAOO.registrarDetalleVenta(detallesVOO);
-				
-				
-			}
+				  
+				  Double valorIvaProducto = carrito.getValor_total() * productosX;
+				  detallesVOO.setValoriva(valorIvaProducto);
+				  
+				  Double valorVentaProducto = carrito.getValor_total() + valorIvaProducto;
+				  detallesVOO.setValor_venta(valorVentaProducto);
+				  
+				  detallesDAOO.registrarDetalleVenta(detallesVOO);
+
+			  } //fin for
+			 
 			  			
 			
 		break;

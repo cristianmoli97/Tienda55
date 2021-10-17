@@ -39,6 +39,7 @@ public class TiendaController {
             mav.setViewName("redirect:login");
         }else {
         	mav.setViewName("redirect:usuarioscrud");
+			TiendaMinTicApplication.GlobalUserName.setUserLoginx(usuVO.getUsuario());
         }
         return mav;
     }

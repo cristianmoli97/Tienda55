@@ -11,6 +11,20 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 @EntityScan("com.tiendaMinTicDto")
 public class TiendaMinTicApplication {
 
+	public static class GlobalUserName{
+	    public static String userLoginx = "nada";
+
+	    public static String getUserLoginx(){
+	        return GlobalUserName.userLoginx;
+	    }
+
+
+	    public static void setUserLoginx(String userloginx){
+	    	GlobalUserName.userLoginx = userloginx;
+
+	    }
+	}
+
 	public static void main(String[] args) {
 		SpringApplication.run(TiendaMinTicApplication.class, args);
 	}

@@ -15,7 +15,8 @@ public class VentasDAO {
 		ArrayList<VentasVO> listaventas= new ArrayList<>() ;
 		Conexion conex=new Conexion();
 		try {
-			String query="Select codigo_venta,cedula_cliente,cedula_usuario,ivaventa,total_venta, valor_venta from ventas";
+			String query="Select codigo_venta,cedula_cliente,cedula_usuario,ivaventa,"
+					+ "total_venta, valor_venta from ventas";
 			PreparedStatement consulta=conex.getConnection().prepareStatement(query);
 			ResultSet res=consulta.executeQuery();
 			
@@ -41,16 +42,17 @@ public class VentasDAO {
 	}
 	
 	
-	public ArrayList<VentasVO> consultarVentas(long id){
+	public ArrayList<VentasVO> consultarVentas(long codigo){
 		ArrayList<VentasVO> listaVentas= new ArrayList<> ();
 		Conexion conex=new Conexion();
 		 if (conex != null) {
 	                String query = "";
 	                boolean estatus=false;
 		try {
-			query="Select codigo_venta,cedula_cliente,cedula_usuario,ivaventa,total_venta, valor_venta from ventas where  codigo_venta=?";
+			query="Select codigo_venta,cedula_cliente,cedula_usuario,ivaventa,"
+					+ "total_venta, valor_venta from ventas where  codigo_venta=?";
 			PreparedStatement consulta=conex.getConnection().prepareStatement(query);
-			consulta.setLong(1,id);
+			consulta.setLong(1, codigo);
 			ResultSet res=consulta.executeQuery();
 			
 			
@@ -85,6 +87,43 @@ public class VentasDAO {
 		conex.desconectar();
 		return listaVentas;
 	}
+	
+	public Long consultarUltimocodigoVenta(){
+		Long idConsultaUltimo = -1L;
+		Conexion conex=new Conexion();
+		 if (conex != null) {
+	                String query = "";
+	                boolean estatus=false;
+		try {
+			query="SELECT MAX(codigo_venta) AS max_id from ventas";
+			PreparedStatement consulta=conex.getConnection().prepareStatement(query);
+			ResultSet res=consulta.executeQuery();
+			
+			
+			if (res.next()) {
+				idConsultaUltimo = res.getLong("max_id");
+			}
+			
+			res.close();
+			consulta.close();
+			
+			  if(idConsultaUltimo > -1L){
+				estatus=true;
+
+			 }
+			
+		}catch(Exception e) {
+			System.out.println("Error consultarPersona..."+e);
+		}finally{
+	           if (!estatus) {
+	        	   idConsultaUltimo =  0L;
+		   }
+		}
+	}
+	
+		conex.desconectar();
+		return idConsultaUltimo;
+	}
 
 
 	public boolean registrarVenta(VentasVO venta){
@@ -92,16 +131,18 @@ public class VentasDAO {
 		Conexion conex=new Conexion();
 		if (conex != null && venta != null) { 
 		try {
-			String query = "insert into ventas (codigo_venta,cedula_cliente,cedula_usuario,ivaventa,total_venta, valor_venta)"
-			 + "values (?,?,?,?,?)";
+			
+			String query = "insert into ventas (`codigo_venta`, `cedula_cliente`, "
+					  + "`cedula_usuario`,`ivaventa`, `total_venta`, `valor_venta`) VALUES ("+"'"+ venta.getCodigoVentas()+"'"+","
+					  +"'"+venta.getCedulaCliente()+"'"+","
+					  +"'"+venta.getCedulaUsuario()+"'"+","
+					  +"'"+venta.getIvaVenta()+"'"+","
+					  +"'"+venta.getTotalVenta()+"'"+","
+					  +"'"+venta.getValorVenta()+"'"
+					  +")";
 
 			PreparedStatement consulta = conex.getConnection().prepareStatement(query);
-			consulta.setLong(1, venta.getCodigoVentas());
-			consulta.setLong(2,venta.getCedulaCliente());
-			consulta.setLong(3, venta.getCedulaUsuario());
-			consulta.setDouble(4, venta.getIvaVenta());
-			consulta.setDouble(5,venta.getTotalVenta());
-			consulta.setDouble(6,venta.getValorVenta());
+
 		
 
 			if (this.consultarVentas(venta.getCodigoVentas()) == null) {  // si la venta no esxiste registra venta
@@ -126,7 +167,8 @@ public class VentasDAO {
 		boolean estatus=false;
 		Conexion conex=new Conexion();
 		try{         
-			String query ="UPDATE ventas SET cedula_cliente = ?, cedula_usuario = ?, ivaventa = ?, total_venta = ? , valor_venta = ? WHERE codigo_venta = ? ";
+			String query ="UPDATE ventas SET cedula_cliente = ?, cedula_usuario = ?, ivaventa = ?, "
+					+ "total_venta = ? , valor_venta = ? WHERE codigo_venta = ? ";
 			PreparedStatement consulta = conex.getConnection().prepareStatement(query);
 			
 			

@@ -78,7 +78,7 @@ public boolean registrarDetalleVenta(DetalleVO detalle){
 		if (this.consultarDetallesVentas(detalle.getCodigo_detalle_venta()) == null) {  // si la venta no existe registra venta
 					consulta.executeUpdate(query);
 					estatus =  true;
-					System.out.print("imprimiooooooo");
+				
 				  }  
 			 
 			

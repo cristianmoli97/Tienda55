@@ -21,13 +21,19 @@ import com.tiendaMinTicDto.MensajeTienda;
 @RestController
 public class ProductosCSVControlador {
 	
+	private String userloginInUse =  TiendaMinTicApplication.GlobalUserName.getUserLoginx(); //accede al ususario ingresado en login
 	// Interfaz cargar archivo csv
 			@GetMapping(value = {"/producto"})
-			  public ModelAndView prodcsv(){
+			  public String prodcsv(){
 
-				  ModelAndView mav = new ModelAndView("productos");
-			  
-			  return mav; 
+				if(userloginInUse.equals("nada")) {
+
+					return "redirect:login";
+				}else {
+
+				    return "productos";
+				}
+
 	}
 			
 	@Autowired
