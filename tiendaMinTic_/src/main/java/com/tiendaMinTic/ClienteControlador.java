@@ -20,16 +20,21 @@ import java.util.ArrayList;
 public class ClienteControlador {
 
     	// CRUD cliente
-	@GetMapping(value = {"/clientecrud"})  
+		@GetMapping(value = {"/clientecrud"})  
 	public String updateContact2(Model model) {
-		ClienteVO cliente = new ClienteVO();
-		model.addAttribute("cliente",cliente);
-		model.addAttribute("tableActive", "hidden");
-		model.addAttribute("popupActive", "hidden");
-		model.addAttribute("popupMsj", "");
-		return "clienteForm";
-	}
+		String userloginInUse = TiendaMinTicApplication.usernameLoginx; //accede al ususario ingresado en login
+    	if(userloginInUse.equals("nada")) {
 
+			return "redirect:login";
+		}else {
+			ClienteVO cliente = new ClienteVO();
+			model.addAttribute("cliente",cliente);
+			model.addAttribute("tableActive", "hidden");
+			model.addAttribute("popupActive", "hidden");
+			model.addAttribute("popupMsj", "");
+			return "clienteForm";
+		}
+	}
 
 	@PostMapping("/registrarcliente")
 	public String registrarClientes(@ModelAttribute("cliente") ClienteVO cliente, @ModelAttribute("evento_boton_crud_cliente") String botonCrudCliente , Model model) {

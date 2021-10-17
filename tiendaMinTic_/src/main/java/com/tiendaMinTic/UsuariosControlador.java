@@ -18,13 +18,19 @@ public class UsuariosControlador {
 	// CRUD Usuarios
 	
     @GetMapping(value = {"/usuarioscrud"})  
-    public String updateContact(Model model) {
-    	UsuariosVO usuario = new UsuariosVO();
-        model.addAttribute("usuario",usuario);
-        model.addAttribute("tableActive", "hidden");
-        model.addAttribute("popupActive", "hidden");
-        model.addAttribute("popupMsj", "");
-        return "usuariosForm";
+    public String updateUsu(Model model) {
+    	String userloginInUse = TiendaMinTicApplication.usernameLoginx; //accede al ususario ingresado en login
+    	if(userloginInUse.equals("nada")) {
+
+			return "redirect:login";
+		}else {
+			UsuariosVO usuario = new UsuariosVO();
+			model.addAttribute("usuario",usuario);
+			model.addAttribute("tableActive", "hidden");
+			model.addAttribute("popupActive", "hidden");
+			model.addAttribute("popupMsj", "");
+			return "usuariosForm";
+		}
  }
     
       //Al hacer click sobre alguno de los botones

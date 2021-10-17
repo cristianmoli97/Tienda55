@@ -19,13 +19,19 @@ public class ProveedorControlador {
 
     	// CRUD Proveedores
 	@GetMapping(value = {"/proveedorescrud"})  
-	public String updateContact2(Model model) {
-		ProveedoresVO proveedor = new ProveedoresVO();
-		model.addAttribute("proveedor",proveedor);
-		model.addAttribute("tableActive", "hidden");
-		model.addAttribute("popupActive", "hidden");
-		model.addAttribute("popupMsj", "");
-		return "proveedoresForm";
+	public String updateProve2(Model model) {
+		String userloginInUse = TiendaMinTicApplication.usernameLoginx; //accede al ususario ingresado en login
+    	if(userloginInUse.equals("nada")) {
+
+			return "redirect:login";
+		}else {
+			ProveedoresVO proveedor = new ProveedoresVO();
+			model.addAttribute("proveedor",proveedor);
+			model.addAttribute("tableActive", "hidden");
+			model.addAttribute("popupActive", "hidden");
+			model.addAttribute("popupMsj", "");
+			return "proveedoresForm";
+		}
  }
 
 //Al hacer click sobre alguno de los botones

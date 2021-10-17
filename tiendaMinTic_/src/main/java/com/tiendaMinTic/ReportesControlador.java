@@ -24,11 +24,17 @@ public class ReportesControlador {
 
 	
 	@GetMapping(value="/reportesall")
-    public String paginareportes(Model model){
-		model.addAttribute("tableActive", "hidden");
-        model.addAttribute("popupActive", "hidden");
-        model.addAttribute("popupMsj", "");
-		return "reportes";
+	public String paginareportes(Model model){
+		String userloginInUse = TiendaMinTicApplication.usernameLoginx; //accede al ususario ingresado en login
+    	if(userloginInUse.equals("nada")) {
+
+			return "redirect:login";
+		}else {
+			model.addAttribute("tableActive", "hidden");
+			model.addAttribute("popupActive", "hidden");
+			model.addAttribute("popupMsj", "");
+			return "reportes";
+		}
     }
 	
 	@PostMapping(value="/reportesapp")
