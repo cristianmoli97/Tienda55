@@ -18,8 +18,12 @@
                 <li><a href="usuarioscrud">USUARIOS</a></li>
                 <li><a href="clientecrud">CLIENTES</a></li>
                 <li><a href="/proveedorescrud">PROVEEDORES</a></li>
-                <li><a href="/producto">PRODUCTOS</a></li>
-                <li><a href=/ventas">VENTAS</a></li>
+               <li><a href="producto">PRODUCTOS</a>
+				<ul>
+					  <li><a href="prodcrud">CRUD</a></li>
+				  </ul>
+			  </li>
+                <li><a href="/ventas">VENTAS</a></li>
                 <li><a href="/reportesall">REPORTES</a></li>
                 <li><a href="/login">LOGOUT</a></li>
             </ul>
@@ -32,6 +36,7 @@
                         <input class="buttonPRO" type="submit" id="btnSearchCliente" value = "consultar cliente" name="evento_boton_ventas" disabled/>
                     </div>
                     <p class="textoBalnco"><c:out value="${txtName}"/></p>
+                    <p class="textoBalnco"><c:out value="${txtCodigoVenta}"/></p>
                 </div>
                 <div class="addProducto">
                     <input type="text" class="inputPRO" name="idProducto" placeholder="Cod Producto" onkeyup="validarProducto(this)">
@@ -75,6 +80,15 @@
             </form:form> 
         </section>    
     </div>
+    
+    <div class="window-notice" id="window-notice" style="visibility: ${popupActive}">
+    <div class="content">
+        <div class="content-text">${popupMsj}. 
+        
+        <div class="content-buttons"> <a href="ventas" id="close-button2">Aceptar</a></div>
+    	</div>
+	</div>
+</div>
     
     <script src="/static/js/ventas.js"> </script>
 </body>

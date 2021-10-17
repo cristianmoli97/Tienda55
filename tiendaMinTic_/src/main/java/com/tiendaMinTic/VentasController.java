@@ -30,13 +30,14 @@ public class VentasController {
 	
 	
 	@GetMapping(value="/ventas")		
-    public String paginadefault(){
+    public String paginadefault(Model model){
 		String userloginInUse = TiendaMinTicApplication.usernameLoginx;//accede al ususario ingresado en login
 		if(userloginInUse.equals("nada")) {
 
 			return "redirect:login";
 		}else {
-
+			model.addAttribute("popupActive", "hidden");
+			model.addAttribute("popupMsj", "");
 		    return "ventas";
 		}
     }
@@ -57,6 +58,8 @@ public class VentasController {
     public String AccederReportes(@ModelAttribute("evento_boton_ventas") String butonVentas, @RequestParam(name = "docCliente") String txtDocumentoCliente, @RequestParam(name = "idProducto") String txtIdProducto, @RequestParam(name = "idCantidad") String txtIdCnatidad, @RequestParam(name = "idTotalP") String txtValorTUnidadP, Model model){
 		String userloginInUse = TiendaMinTicApplication.usernameLoginx;//accede al ususario ingresado en login
 		String redireccion = "ventas";
+		model.addAttribute("popupActive", "hidden");
+		model.addAttribute("popupMsj", "");
 			
 		if(txtDocumentoCliente != "") documentoCliente = Long.parseLong(txtDocumentoCliente);
 		else documentoCliente = 0;	
@@ -218,9 +221,10 @@ public class VentasController {
 
 			  } //fin for
 			 
-			  			
+			  model.addAttribute("popupActive", "visible");
+			  model.addAttribute("popupMsj", "Detalle ventas guardado");			
 			
-		break;
+			  break;
 
 			default:
 				
