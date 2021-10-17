@@ -17,6 +17,7 @@
 
 <body>
   <div id="login-button">
+    <h1>Clickme</h1>
     <img src="/static/imagenes/login-w-icon.png"></img>
   </div>
 
@@ -54,7 +55,7 @@
   
     <form>
       <input type="email" name="password_err" placeholder="E-mail">
-      <a href="#" class="orange-btn">Nuevo Password</a>
+      <a href="#" class="recupass_btn">Nuevo Password</a>
     </form>
   </div>
   
