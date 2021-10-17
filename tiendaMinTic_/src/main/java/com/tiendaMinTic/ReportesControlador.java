@@ -130,7 +130,7 @@ public class ReportesControlador {
 					  model.addAttribute("labelcampo1","Cedula Cliente");
 					  model.addAttribute("labelcampo2","Nombre Cliente");
 					  model.addAttribute("labelcampo3","Valor Total ventas");
-					  model.addAttribute("labelcampo4","Total Ventas");
+					  model.addAttribute("labelcampo4","Total Ventas Parciales");
 					  model.addAttribute("labelcampo5","");
 					  
 					  ClienteDao clidao2 = new ClienteDao();
@@ -140,6 +140,8 @@ public class ReportesControlador {
 					  for( VentasVO ventas1: listaventas) {
 						  reportesVO repor = new reportesVO();
 						  
+						  repor.setCampo1(String.valueOf(ventas1.getCedulaCliente())); 
+						  
 						  listaclientes = clidao2.buscarCliente(ventas1.getCedulaCliente());
 						  for( ClienteVO clie2: listaclientes) {
 							  if(clie2.getCedulaCliente() == ventas1.getCedulaCliente()) {
@@ -148,12 +150,12 @@ public class ReportesControlador {
 							  }
 						  
 						  }
-						  suma = suma + ventas1.getTotalVenta();	  
-						  repor.setCampo1(String.valueOf(ventas1.getCedulaCliente())); 
+						  
 						  repor.setCampo3(String.valueOf(ventas1.getTotalVenta()));
-						  repor.setCampo4(String.valueOf(suma));
+						  
+						  suma = suma + ventas1.getTotalVenta();	  
+						  repor.setCampo4(String.valueOf(Math.round(suma*100)/100.0d));
 						  repor.setCampo5("");
-						  repor.setCampo6("");
 						  listrepo.add(repor);
 					  }
 					  model.addAttribute("listareporte",listrepo);

@@ -15,21 +15,21 @@
 </head>
 <body>
 <nav>
-	<ul>
-		<li><a href="usuarioscrud">Usuarios</a>
-		<li><a href="clientecrud">Clientes</a></li>
-		<li><a href="proveedorescrud">Proveedores</a></li>
-		<li><a href="producto">Productos</a>
-			<ul>
-      			<li><a href="prodcrud">CRUD</a></li>
-      		</ul>
-      	</li>
-		<li><a href="/ventas">Ventas</a></li>
-		<li><a href="/reportesall">Reportes</a></li>
-		<li><a href="/login">logout</a></li>
-		
-	</ul>
-</nav>
+		<ul>
+			<li><a href="usuarioscrud">Usuarios</a>
+			<li><a href="clientecrud">Clientes</a></li>
+			<li><a href="proveedorescrud">Proveedores</a></li>
+			<li><a href="producto">Productos</a>
+				<ul>
+					  <li><a href="prodcrud">CRUD</a></li>
+				  </ul>
+			  </li>
+			<li><a href="/ventas">Ventas</a></li>
+			<li><a href="/reportesall">Reportes</a></li>
+			<li><a href="/login">logout</a></li>
+			
+		</ul>
+	</nav>
 
 
   <section class="form-register">
@@ -51,21 +51,51 @@
     
     </div>
 
-    <div id="tabla" style="position: absolute; left: 30%; top: 50%; visibility: ${tableActive};">
- 
-    <table border="1" class="styled-table">
     
-            <thead>
-                <tr>
-                    <th id="repocol1c">${labelcampo1}</th>
-                    <th id="repocol2c">${labelcampo2}</th>
-                    <th id="repocol3c">${labelcampo3}</th>
-                    <th id="repocol4c"class='unselectable'>${labelcampo4}</th>
-                    <th id="repocol5c" class='unselectable'>${labelcampo5}</th>
-                </tr>
-            </thead>
-            <tbody>
-            <c:forEach var="f" items="${listareporte}">                
+    <div id="tabla" class="datagrid" style="visibility: ${tableActive};">
+    <table>
+		<thead>
+			<tr>
+				<th id="repocol1c">${labelcampo1}</th>
+                <th id="repocol2c">${labelcampo2}</th>
+                <th id="repocol3c">${labelcampo3}</th>
+				<th id="repocol4c" class='unselectable'>${labelcampo4}</th>
+				<th id="repocol5c" class='unselectable'>${labelcampo5}</th>
+			</tr>
+		</thead>
+		<tfoot>
+			<tr>
+				<td colspan="4">
+					<div id="paging">
+					<ul>
+					<li>
+					<a href="#"><span>Previous</span></a>
+					</li>
+					<li>
+					<a href="#" class="active">	<span>1</span></a>
+					</li>
+					<li>
+					<a href="#"> <span>2</span></a>
+					</li>
+					<li>
+					<a href="#"><span>3</span></a>
+					</li>
+					<li>
+					<a href="#"><span>4</span></a>
+					</li>
+					<li>
+					<a href="#"><span>5</span></a>
+					</li>
+					<li>
+					<a href="#"><span>Next</span></a>
+					</li>
+					</ul>
+					</div>
+			</tr>
+		</tfoot>
+		
+		<tbody>
+		  <c:forEach var="f" items="${listareporte}">                
                 <tr>
                     <td id="repocol1">${f.getCampo1()}</td>
                     <td id="repocol2">${f.getCampo2()}</td>
@@ -73,12 +103,10 @@
                     <td id="repocol4"  class='unselectable' >${f.getCampo4()}</td>
                     <td id="repocol5" class='unselectable'>${f.getCampo5()}</td>
                 </tr>
-            </c:forEach> 
-        </tbody>
-    </table>
-
-    
-    </div>
+            </c:forEach>
+		</tbody>
+	</table>
+	</div>
     
   </form:form>
   </section>

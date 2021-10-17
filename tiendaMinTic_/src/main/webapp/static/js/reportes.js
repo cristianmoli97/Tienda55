@@ -59,7 +59,7 @@ $(document).ready(function(){
 				  //repocol5c.style.display="none";
 				  //repocol4.style.display="none";
 				  //repocol5.style.display="none";
-				  $('#repocol4c').hide();
+				  //$('#repocol4c').hide();
 	
 				  //$('#tabla tr > *:nth-child(4)').hide();
 				  //$('#tabla tr > *:nth-child(5)').hide();
