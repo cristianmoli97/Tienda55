@@ -31,7 +31,7 @@
 
 <section class="form-register">
   <form:form action="registrarproveedorform" method="POST" modelAttribute="proveedor" id="proveForm"> 
-    <h4>Seleccione la operaci�n a realizar:</h4>    
+    <h4>Seleccione la operacion a realizar:</h4>    
     <div class=botones>
     	<button class="botons" id="btn_consultar" type="button">Consultar</button>
     	<button class="botons"  id="btn_crear" type="button">Crear</button>
@@ -46,9 +46,8 @@
     <form:input class="controls" type="text" path="telefonoProveedor" name="telefonoProveedor" id="telefonoProveedor"  placeholder="telefono Proveedor"/>
 
     
-    <div id="tabla" style="position: absolute; left: 25%; top: 35%; visibility: ${tableActive};">
- 
-    <table border="1" class="styled-table">
+   <div id="tabla" class="datagrid" style=" z-index: 1;position: absolute;left: 28%; top: 35%;visibility: ${tableActive};">
+    <table >
     
             <thead>
                 <tr>
@@ -61,6 +60,27 @@
                 </tr>
             </thead>
             <tbody>
+            <tfoot>
+			<tr>
+				<td colspan="6" >
+					<div id="paging">
+					<ul>
+					<li>
+					<a href="#"><span>Previous</span></a>
+					</li>
+					<li>
+					<a href="#" class="active">	<span>1</span></a>
+					</li>
+					<li>
+					<a href="#"> <span>2</span></a>
+					</li>
+					<li>
+					<a href="#"><span>Next</span></a>
+					</li>
+					</ul>
+					</div>
+			</tr>
+		</tfoot>
             <c:forEach var="f" items="${listaproveedores}">                
                 <tr>
                     <td>${f.getNitProveedor()}</td>

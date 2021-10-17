@@ -14,21 +14,21 @@
 </head>
 <body>
   <nav>
-    <ul>
-      <li><a href="usuarioscrud">Usuarios</a>
-      <li><a href="clientecrud">Clientes</a></li>
-      <li><a href="proveedorescrud">Proveedores</a></li>
-      <li><a href="producto">Productos</a>
-        <ul>
-              <li><a href="prodcrud">CRUD</a></li>
-            </ul>
-          </li>
-      <li><a href="/ventas">Ventas</a></li>
-      <li><a href="/reportesall">Reportes</a></li>
-      <li><a href="/login">logout</a></li>
-      
-    </ul>
-  </nav>
+		<ul>
+			<li><a href="usuarioscrud">Usuarios</a>
+			<li><a href="clientecrud">Clientes</a></li>
+			<li><a href="proveedorescrud">Proveedores</a></li>
+			<li><a href="producto">Productos</a>
+				<ul>
+					  <li><a href="prodcrud">CRUD</a></li>
+				  </ul>
+			  </li>
+			<li><a href="/ventas">Ventas</a></li>
+			<li><a href="/reportesall">Reportes</a></li>
+			<li><a href="/login">logout</a></li>
+			
+		</ul>
+	</nav>
 
   <section class="form-register">
   <form:form action="registrarusuarioform"  method="post" modelAttribute="usuario" id="usuariosForm"> 
@@ -45,11 +45,11 @@
     <form:input class="controls" type="text" path="passwordUsuario" name="passwordUsuario" id="passwordUsuario" pattern="[a-z,A-Z,0-9]{1,15}" placeholder="passwordUsuario"/>
     <form:input class="controls" type="text" path="nombreUsuario" name="nombreUsuario" id="nombreUsuario" pattern="[a-z,A-Z,0-9]{1,15}" placeholder="nombreUsuario"/>
     <form:input class="controls" type="text" path="correoUsuario" name="correoUsuario" id="correoUsuario" pattern="[a-z,A-Z,0-9]{1,15}{@,.}" placeholder="correoUsuario"/>
-    <div id="tabla" style="position: absolute; left: 25%; top: 35%; visibility: ${tableActive};">
-  <table border="1" class="styled-table">
+    <div id="tabla" class="datagrid" style=" z-index: 1;position: absolute;left: 32%; top: 35%;visibility: ${tableActive};">
+    <table >
     
             <thead>
-                <tr>
+                <tr >
                     <th>cedula</th>
                     <th>usuario</th>
                     <th>passworUsuario</th>
@@ -58,6 +58,27 @@
                  </tr>
             </thead>
             <tbody>
+            <tfoot>
+			<tr>
+				<td colspan="6" >
+					<div id="paging">
+					<ul>
+					<li>
+					<a href="#"><span>Previous</span></a>
+					</li>
+					<li>
+					<a href="#" class="active">	<span>1</span></a>
+					</li>
+					<li>
+					<a href="#"> <span>2</span></a>
+					</li>
+					<li>
+					<a href="#"><span>Next</span></a>
+					</li>
+					</ul>
+					</div>
+			</tr>
+		</tfoot>
             <c:forEach var="f" items="${listausuario}">                
                 <tr>
                     <td>${f.getCedula()}</td>

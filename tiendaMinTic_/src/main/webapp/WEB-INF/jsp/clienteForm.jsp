@@ -40,15 +40,14 @@
     </div> 
     	
     <form:input class="controls" type="text" path="cedulaCliente" name="cedulaCliente" id="cedulaCliente" pattern="[0-9]{1,10}" placeholder="cedula Cliente" required="required"/>
-    <form:input class="controls" type="text" path="nombreCompleto" name="nombreCompleto" id="nombreCompleto" pattern="[a-z,A-Z,0-9]{1,25}" placeholder="nombre completo"/>
+    <form:input class="controls" type="text" path="nombreCompleto" name="nombreCompleto" id="nombreCompleto" pattern="[a-z,A-Z,0-9, ]{1,25}" placeholder="nombre completo"/>
     <form:input class="controls" type="text" path="direccion" name="direccion" id="direccion" placeholder="direccion cliente"/>
     <form:input class="controls" type="text" path="telefono" name="telefono" id="telefono" pattern="[0-9]{1,10}" placeholder="telefono "/>
     <form:input class="controls" type="text" path="correoElectronico" name="correoElectronico" id="correoElectronico"  pattern="[a-z,A-Z,0-9]{1,15}{@,.}" placeholder="correo electronico"/>
 
     
-    <div id="tabla" style="position: absolute; left: 25%; top: 35%; visibility: ${tableActive};">
- 
-    <table border="1" class="styled-table">
+   <div id="tabla" class="datagrid" style=" z-index: 1;position: absolute;left: 32%; top: 35%;visibility: ${tableActive};">
+    <table >
     
             <thead>
                 <tr>
@@ -61,6 +60,27 @@
                 </tr>
             </thead>
             <tbody>
+            <tfoot>
+			<tr>
+				<td colspan="6" >
+					<div id="paging">
+					<ul>
+					<li>
+					<a href="#"><span>Previous</span></a>
+					</li>
+					<li>
+					<a href="#" class="active">	<span>1</span></a>
+					</li>
+					<li>
+					<a href="#"> <span>2</span></a>
+					</li>
+					<li>
+					<a href="#"><span>Next</span></a>
+					</li>
+					</ul>
+					</div>
+			</tr>
+		</tfoot>
             <c:forEach var="f" items="${listacliente}">                
                 <tr>
                     <td>${f.getCedulaCliente()}</td>
