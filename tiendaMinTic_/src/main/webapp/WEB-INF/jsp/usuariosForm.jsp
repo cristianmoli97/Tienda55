@@ -43,8 +43,8 @@
     <form:input class="controls" type="text" path="Cedula" name="Cedula" id="Cedula" pattern="[0-9]{1,12}" placeholder="Cedula" required="required" />
     <form:input class="controls" type="text" path="usuario" name="usuario" id="usuario" pattern="[a-z,A-Z,0-9]{1,15}" placeholder="usuario"/>
     <form:input class="controls" type="text" path="passwordUsuario" name="passwordUsuario" id="passwordUsuario" pattern="[a-z,A-Z,0-9]{1,15}" placeholder="passwordUsuario"/>
-    <form:input class="controls" type="text" path="nombreUsuario" name="nombreUsuario" id="nombreUsuario" pattern="[a-z,A-Z,0-9]{1,15}" placeholder="nombreUsuario"/>
-    <form:input class="controls" type="text" path="correoUsuario" name="correoUsuario" id="correoUsuario" pattern="[a-z,A-Z,0-9]{1,15}{@,.}" placeholder="correoUsuario"/>
+    <form:input class="controls" type="text" path="nombreUsuario" name="nombreUsuario" id="nombreUsuario" pattern="[a-z,A-Z,0-9, ]{1,25}" placeholder="nombreUsuario"/>
+    <form:input class="controls" type="text" path="correoUsuario" name="correoUsuario" id="correoUsuario" pattern="[a-z,A-Z,0-9]{1,25}{@,.}" placeholder="correoUsuario"/>
     <div id="tabla" class="datagrid" style=" z-index: 1;position: absolute;left: 32%; top: 35%;visibility: ${tableActive};">
     <table >
     

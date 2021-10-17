@@ -43,7 +43,7 @@
     <form:input class="controls" type="text" path="nombreCompleto" name="nombreCompleto" id="nombreCompleto" pattern="[a-z,A-Z,0-9, ]{1,25}" placeholder="nombre completo"/>
     <form:input class="controls" type="text" path="direccion" name="direccion" id="direccion" placeholder="direccion cliente"/>
     <form:input class="controls" type="text" path="telefono" name="telefono" id="telefono" pattern="[0-9]{1,10}" placeholder="telefono "/>
-    <form:input class="controls" type="text" path="correoElectronico" name="correoElectronico" id="correoElectronico"  pattern="[a-z,A-Z,0-9]{1,15}{@,.}" placeholder="correo electronico"/>
+    <form:input class="controls" type="text" path="correoElectronico" name="correoElectronico" id="correoElectronico"  pattern="[a-z,A-Z,0-9]{1,25}{@,.}" placeholder="correo electronico"/>
 
     
    <div id="tabla" class="datagrid" style=" z-index: 1;position: absolute;left: 32%; top: 35%;visibility: ${tableActive};">
