@@ -3,6 +3,7 @@ package com.tiendaMinTic;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,17 +23,20 @@ import com.tiendaMinTicDto.MensajeTienda;
 public class ProductosCSVControlador {
 	
 	// Interfaz cargar archivo csv
-			@GetMapping(value = {"/producto"})
-			  public String prodcsv(){
-				String userloginInUse = TiendaMinTicApplication.usernameLoginx; //accede al ususario ingresado en login
+	@GetMapping(value = {"/producto"})
+	public ModelAndView prodcsv(Model model){
+		ModelAndView mav = new ModelAndView();
+		String userloginInUse = TiendaMinTicApplication.usernameLoginx; //accede al ususario ingresado en login
 
-				if(userloginInUse.equals("nada")) {
+	    if(userloginInUse.equals("nada")) {
 
-					return "redirect:login";
-				}else {
+			 mav.setViewName("redirect:login");
+		}else {
 
-				    return "productos";
-				}
+		     mav.setViewName("productos");
+		}
+		
+		return mav;
 
 	}
 			
