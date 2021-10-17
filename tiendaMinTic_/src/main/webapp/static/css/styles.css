@@ -167,3 +167,8 @@ input:focus{
 .orange-btn{
   background: rgba(244,128,3,.5);
 }
+
+.recupass_btn{
+  font-size: 12px;
+  font-family: 'Hind', sans-serif;
+}
