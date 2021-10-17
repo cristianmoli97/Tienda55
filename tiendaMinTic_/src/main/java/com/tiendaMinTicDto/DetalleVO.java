@@ -1,17 +1,26 @@
 package com.tiendaMinTicDto;
 
 public class DetalleVO {
-	private Integer cantidad_producto;
+	private long codigo_detalle_venta;
+
+	private long cantidad_producto;
 	private long codigo_producto;
-	private Integer codigo_venta;
+	private long codigo_venta;
 	private Double valor_total;
 	private Double valor_venta;
 	private Double valoriva;
 	
-	public Integer getCantidad_producto() {
+	public long getCodigo_detalle_venta() {
+		return codigo_detalle_venta;
+	}
+	public void setCodigo_detalle_venta(long codigo_detalle_venta) {
+		this.codigo_detalle_venta = codigo_detalle_venta;
+	}
+	
+	public long getCantidad_producto() {
 		return cantidad_producto;
 	}
-	public void setCantidad_producto(Integer cantidad_producto) {
+	public void setCantidad_producto(long cantidad_producto) {
 		this.cantidad_producto = cantidad_producto;
 	}
 	
@@ -21,10 +30,10 @@ public class DetalleVO {
 	public void setCodigo_producto(long codigo_producto) {
 		this.codigo_producto = codigo_producto;
 	}
-	public Integer getCodigo_venta() {
+	public long getCodigo_venta() {
 		return codigo_venta;
 	}
-	public void setCodigo_venta(Integer codigo_venta) {
+	public void setCodigo_venta(long codigo_venta) {
 		this.codigo_venta = codigo_venta;
 	}
 	public Double getValor_total() {
